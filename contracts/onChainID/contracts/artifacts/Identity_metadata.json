@@ -1,0 +1,1041 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "initialManagementKey",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "_isLibrary",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "executionId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "approved",
+						"type": "bool"
+					}
+				],
+				"name": "Approved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "claimId",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "topic",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "scheme",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "issuer",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "signature",
+						"type": "bytes"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "uri",
+						"type": "string"
+					}
+				],
+				"name": "ClaimAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "claimId",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "topic",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "scheme",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "issuer",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "signature",
+						"type": "bytes"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "uri",
+						"type": "string"
+					}
+				],
+				"name": "ClaimChanged",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "claimId",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "topic",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "scheme",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "issuer",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "signature",
+						"type": "bytes"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "uri",
+						"type": "string"
+					}
+				],
+				"name": "ClaimRemoved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "executionId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "Executed",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "executionId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "ExecutionFailed",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "executionId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "ExecutionRequested",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "key",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "purpose",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "keyType",
+						"type": "uint256"
+					}
+				],
+				"name": "KeyAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "key",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "purpose",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "keyType",
+						"type": "uint256"
+					}
+				],
+				"name": "KeyRemoved",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_topic",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_scheme",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_issuer",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes",
+						"name": "_signature",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "_data",
+						"type": "bytes"
+					},
+					{
+						"internalType": "string",
+						"name": "_uri",
+						"type": "string"
+					}
+				],
+				"name": "addClaim",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "claimRequestId",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_key",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_purpose",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_type",
+						"type": "uint256"
+					}
+				],
+				"name": "addKey",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "_approve",
+						"type": "bool"
+					}
+				],
+				"name": "approve",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_value",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "_data",
+						"type": "bytes"
+					}
+				],
+				"name": "execute",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "executionId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_claimId",
+						"type": "bytes32"
+					}
+				],
+				"name": "getClaim",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "topic",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "scheme",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "issuer",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes",
+						"name": "signature",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					},
+					{
+						"internalType": "string",
+						"name": "uri",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_topic",
+						"type": "uint256"
+					}
+				],
+				"name": "getClaimIdsByTopic",
+				"outputs": [
+					{
+						"internalType": "bytes32[]",
+						"name": "claimIds",
+						"type": "bytes32[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_key",
+						"type": "bytes32"
+					}
+				],
+				"name": "getKey",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "purposes",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "keyType",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "key",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_key",
+						"type": "bytes32"
+					}
+				],
+				"name": "getKeyPurposes",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "_purposes",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_purpose",
+						"type": "uint256"
+					}
+				],
+				"name": "getKeysByPurpose",
+				"outputs": [
+					{
+						"internalType": "bytes32[]",
+						"name": "keys",
+						"type": "bytes32[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "sig",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "dataHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "getRecoveredAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "initialManagementKey",
+						"type": "address"
+					}
+				],
+				"name": "initialize",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IIdentity",
+						"name": "_identity",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "claimTopic",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "sig",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "isClaimValid",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "claimValid",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_key",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_purpose",
+						"type": "uint256"
+					}
+				],
+				"name": "keyHasPurpose",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "result",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_claimId",
+						"type": "bytes32"
+					}
+				],
+				"name": "removeClaim",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_key",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_purpose",
+						"type": "uint256"
+					}
+				],
+				"name": "removeKey",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "version",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Implementation of the `IERC734` \"KeyHolder\" and the `IERC735` \"ClaimHolder\" interfaces into a common Identity Contract. This implementation has a separate contract were it declares all storage, allowing for it to be used as an upgradable logic contract.",
+			"events": {
+				"Approved(uint256,bool)": {
+					"details": "Emitted when an execution request was approved. Specification: MUST be triggered when approve was successfully called."
+				},
+				"ClaimAdded(bytes32,uint256,uint256,address,bytes,bytes,string)": {
+					"details": "Emitted when a claim was added. Specification: MUST be triggered when a claim was successfully added."
+				},
+				"ClaimChanged(bytes32,uint256,uint256,address,bytes,bytes,string)": {
+					"details": "Emitted when a claim was changed. Specification: MUST be triggered when addClaim was successfully called on an existing claimId."
+				},
+				"ClaimRemoved(bytes32,uint256,uint256,address,bytes,bytes,string)": {
+					"details": "Emitted when a claim was removed. Specification: MUST be triggered when removeClaim was successfully called."
+				},
+				"Executed(uint256,address,uint256,bytes)": {
+					"details": "Emitted when an execute operation was approved and successfully performed. Specification: MUST be triggered when approve was called and the execution was successfully approved."
+				},
+				"ExecutionFailed(uint256,address,uint256,bytes)": {
+					"details": "Emitted when an execute operation was called and failed Specification: MUST be triggered when execute call failed"
+				},
+				"ExecutionRequested(uint256,address,uint256,bytes)": {
+					"details": "Emitted when an execution request was performed via `execute`. Specification: MUST be triggered when execute was successfully called."
+				},
+				"KeyAdded(bytes32,uint256,uint256)": {
+					"details": "Emitted when a key was added to the Identity. Specification: MUST be triggered when addKey was successfully called."
+				},
+				"KeyRemoved(bytes32,uint256,uint256)": {
+					"details": "Emitted when a key was removed from the Identity. Specification: MUST be triggered when removeKey was successfully called."
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"addClaim(uint256,uint256,address,bytes,bytes,string)": {
+					"details": "See {IERC735-addClaim}.",
+					"params": {
+						"_data": "The hash of the claim data, sitting in another location, a bit-mask, call data, or actual data based on the claim scheme.",
+						"_issuer": "The issuers identity contract address, or the address used to sign the above signature.",
+						"_scheme": "The scheme with which this claim SHOULD be verified or how it should be processed.",
+						"_signature": "Signature which is the proof that the claim issuer issued a claim of topic for this identity. it MUST be a signed message of the following structure: keccak256(abi.encode(address identityHolder_address, uint256 _ topic, bytes data))",
+						"_topic": "The type of claim",
+						"_uri": "The location of the claim, this can be HTTP links, swarm hashes, IPFS hashes, and such."
+					},
+					"returns": {
+						"claimRequestId": "Returns claimRequestId: COULD be send to the approve function, to approve or reject this claim. triggers ClaimAdded event."
+					}
+				},
+				"addKey(bytes32,uint256,uint256)": {
+					"params": {
+						"_key": "keccak256 representation of an ethereum address",
+						"_purpose": "a uint256 specifying the key type, like 1 = MANAGEMENT, 2 = ACTION, 3 = CLAIM, 4 = ENCRYPTION",
+						"_type": "type of key used, which would be a uint256 for different key types. e.g. 1 = ECDSA, 2 = RSA, etc."
+					},
+					"returns": {
+						"success": "Returns TRUE if the addition was successful and FALSE if not"
+					}
+				},
+				"approve(uint256,bool)": {
+					"details": "See {IERC734-approve}."
+				},
+				"constructor": {
+					"params": {
+						"_isLibrary": "boolean value stating if the contract is library or not calls __Identity_init if contract is not library",
+						"initialManagementKey": "the address of the management key at deployment"
+					}
+				},
+				"execute(address,uint256,bytes)": {
+					"details": "See {IERC734-execute}.",
+					"returns": {
+						"executionId": "to use in the approve function, to approve or reject this execution."
+					}
+				},
+				"getClaim(bytes32)": {
+					"details": "See {IERC735-getClaim}.",
+					"params": {
+						"_claimId": "The identity of the claim i.e. keccak256(abi.encode(_issuer, _topic))"
+					},
+					"returns": {
+						"data": "Returns all the parameters of the claim for the specified _claimId (topic, scheme, signature, issuer, data, uri) .",
+						"issuer": "Returns all the parameters of the claim for the specified _claimId (topic, scheme, signature, issuer, data, uri) .",
+						"scheme": "Returns all the parameters of the claim for the specified _claimId (topic, scheme, signature, issuer, data, uri) .",
+						"signature": "Returns all the parameters of the claim for the specified _claimId (topic, scheme, signature, issuer, data, uri) .",
+						"topic": "Returns all the parameters of the claim for the specified _claimId (topic, scheme, signature, issuer, data, uri) .",
+						"uri": "Returns all the parameters of the claim for the specified _claimId (topic, scheme, signature, issuer, data, uri) ."
+					}
+				},
+				"getClaimIdsByTopic(uint256)": {
+					"details": "See {IERC735-getClaimIdsByTopic}.",
+					"params": {
+						"_topic": "The identity of the claim i.e. keccak256(abi.encode(_issuer, _topic))"
+					},
+					"returns": {
+						"claimIds": "Returns an array of claim IDs by topic."
+					}
+				},
+				"getKey(bytes32)": {
+					"details": "See {IERC734-getKey}.",
+					"params": {
+						"_key": "The public key.  for non-hex and long keys, its the Keccak256 hash of the key"
+					},
+					"returns": {
+						"key": "Returns the full key data, if present in the identity.",
+						"keyType": "Returns the full key data, if present in the identity.",
+						"purposes": "Returns the full key data, if present in the identity."
+					}
+				},
+				"getKeyPurposes(bytes32)": {
+					"details": "See {IERC734-getKeyPurposes}.",
+					"params": {
+						"_key": "The public key.  for non-hex and long keys, its the Keccak256 hash of the key"
+					},
+					"returns": {
+						"_purposes": "Returns the purposes of the specified key"
+					}
+				},
+				"getKeysByPurpose(uint256)": {
+					"details": "See {IERC734-getKeysByPurpose}.",
+					"params": {
+						"_purpose": "a uint256[] Array of the key types, like 1 = MANAGEMENT, 2 = ACTION, 3 = CLAIM, 4 = ENCRYPTION"
+					},
+					"returns": {
+						"keys": "Returns an array of public key bytes32 hold by this identity and having the specified purpose"
+					}
+				},
+				"getRecoveredAddress(bytes,bytes32)": {
+					"details": "returns the address that signed the given data",
+					"params": {
+						"dataHash": "the data that was signed returns the address that signed dataHash and created the signature sig",
+						"sig": "the signature of the data"
+					}
+				},
+				"initialize(address)": {
+					"params": {
+						"initialManagementKey": "The ethereum address to be set as the management key of the ONCHAINID."
+					}
+				},
+				"isClaimValid(address,uint256,bytes,bytes)": {
+					"details": "Checks if a claim is valid. Claims issued by the identity are self-attested claims. They do not have a built-in revocation mechanism and are considered valid as long as their signature is valid and they are still stored by the identity contract.",
+					"params": {
+						"_identity": "the identity contract related to the claim",
+						"claimTopic": "the claim topic of the claim",
+						"data": "the data field of the claim",
+						"sig": "the signature of the claim"
+					},
+					"returns": {
+						"claimValid": "true if the claim is valid, false otherwise"
+					}
+				},
+				"keyHasPurpose(bytes32,uint256)": {
+					"details": "See {IERC734-keyHasPurpose}."
+				},
+				"removeClaim(bytes32)": {
+					"details": "See {IERC735-removeClaim}.",
+					"params": {
+						"_claimId": "The identity of the claim i.e. keccak256(abi.encode(_issuer, _topic))"
+					},
+					"returns": {
+						"success": "Returns TRUE when the claim was removed. triggers ClaimRemoved event"
+					}
+				},
+				"removeKey(bytes32,uint256)": {
+					"details": "See {IERC734-removeKey}."
+				},
+				"version()": {
+					"details": "Returns the string of the current version."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"addClaim(uint256,uint256,address,bytes,bytes,string)": {
+					"notice": "Implementation of the addClaim function from the ERC-735 standard  Require that the msg.sender has claim signer key."
+				},
+				"addKey(bytes32,uint256,uint256)": {
+					"notice": "implementation of the addKey function of the ERC-734 standard Adds a _key to the identity. The _purpose specifies the purpose of key. Initially we propose four purposes: 1: MANAGEMENT keys, which can manage the identity 2: ACTION keys, which perform actions in this identities name (signing, logins, transactions, etc.) 3: CLAIM signer keys, used to sign claims on other identities which need to be revokable. 4: ENCRYPTION keys, used to encrypt data e.g. hold in claims. MUST only be done by keys of purpose 1, or the identity itself. If its the identity itself, the approval process will determine its approval."
+				},
+				"approve(uint256,bool)": {
+					"notice": "Approves an execution.  If the sender is an ACTION key and the destination address is not the identity contract itself, then the  approval is authorized and the operation would be performed.  If the destination address is the identity itself, then the execution would be authorized and performed only  if the sender is a MANAGEMENT key."
+				},
+				"constructor": {
+					"notice": "constructor of the Identity contract"
+				},
+				"execute(address,uint256,bytes)": {
+					"notice": "Passes an execution instruction to the keymanager. If the sender is an ACTION key and the destination address is not the identity contract itself, then the execution is immediately approved and performed. If the destination address is the identity itself, then the execution would be performed immediately only if the sender is a MANAGEMENT key. Otherwise the execution request must be approved via the `approve` method."
+				},
+				"getClaim(bytes32)": {
+					"notice": "Implementation of the getClaim function from the ERC-735 standard."
+				},
+				"getClaimIdsByTopic(uint256)": {
+					"notice": "Implementation of the getClaimIdsByTopic function from the ERC-735 standard. used to get all the claims from the specified topic"
+				},
+				"getKey(bytes32)": {
+					"notice": "Implementation of the getKey function from the ERC-734 standard"
+				},
+				"getKeyPurposes(bytes32)": {
+					"notice": "gets the purposes of a key"
+				},
+				"getKeysByPurpose(uint256)": {
+					"notice": "gets all the keys with a specific purpose from an identity"
+				},
+				"initialize(address)": {
+					"notice": "When using this contract as an implementation for a proxy, call this initializer with a delegatecall."
+				},
+				"keyHasPurpose(bytes32,uint256)": {
+					"notice": "Returns true if the key has MANAGEMENT purpose or the specified purpose."
+				},
+				"removeClaim(bytes32)": {
+					"notice": "Implementation of the removeClaim function from the ERC-735 standard Require that the msg.sender has management key. Can only be removed by the claim issuer, or the claim holder itself."
+				},
+				"removeKey(bytes32,uint256)": {
+					"notice": "Remove the purpose from a key."
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/onChainID/contracts/Identity.sol": "Identity"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/onChainID/contracts/Identity.sol": {
+			"keccak256": "0x36c4a7dc86542f951ad70e65f26a50814c12a6d8fefda1763a01a42357563314",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://0ba532cc1f041c8054d95496f131b9660f84ded795f9de682f9fdb51cee39bcc",
+				"dweb:/ipfs/QmcJp2raU6bGTWAhKERwyQCqf7yVNotDEVEhWryesgwZnm"
+			]
+		},
+		"contracts/onChainID/contracts/interface/IClaimIssuer.sol": {
+			"keccak256": "0x9fab851c90527e31bbf81d5129145042e8eb06a07f35dbc23ca94bf9bd4a44f3",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://2fa78a5f4859e0e3436ace3a473706703ebb79b55edb8ae19780455c7f8880f8",
+				"dweb:/ipfs/QmSmoBroXnkenx9MJ5FCH6RYPNfvvTCBRcxo8AfHDp1Bi2"
+			]
+		},
+		"contracts/onChainID/contracts/interface/IERC734.sol": {
+			"keccak256": "0x7ca841caeee4116062dba880a955796c773d1b0b35a7d69b67104d9e6bd2705a",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://bc05e6f2872be12d06cfe630c13d1d6d74b5b9b587f0797615e5dac88e84f4c8",
+				"dweb:/ipfs/Qme2h6ah6uYShmK5x3fgfsH7rCqYtSUns9tyRyKFJYef6c"
+			]
+		},
+		"contracts/onChainID/contracts/interface/IERC735.sol": {
+			"keccak256": "0x60ac71cd3e106d656dcc26e6f58df6e8c487ce5d0cdeed6f5449cf974a24e587",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://26716e36966cb392d6fa8f9a470b69ded94fedf7f9cdd5095af0028d194baa6d",
+				"dweb:/ipfs/QmYJ7Lc4vk1LNHtqZPWtZSpStCepQRgzUWvVaGAb5yLFV8"
+			]
+		},
+		"contracts/onChainID/contracts/interface/IIdentity.sol": {
+			"keccak256": "0xa3166f33baa94c9f2a010c8618fdd6038b4a64636eab809c50442c835f08f8dc",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://b84d33d807a86846807678787e89f01ee81903968506caf5bc55c36622670c80",
+				"dweb:/ipfs/QmQxG5fp38FTzK22rArNMpknA276Ji5mrrEuaoCR7pwzsH"
+			]
+		},
+		"contracts/onChainID/contracts/storage/Storage.sol": {
+			"keccak256": "0xe793101d554d37fab96da523a59489f5874d6b460e5bb34b3e7561f0a92cbd70",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://121d46d35633a0bdd37b7d674a744323600fd64899568f86f5869f89f5aa3020",
+				"dweb:/ipfs/QmZPBS4b6qB9urv4sdq2UZRrNfKw6fqGVsZN3VPiw5Nw1e"
+			]
+		},
+		"contracts/onChainID/contracts/storage/Structs.sol": {
+			"keccak256": "0x49e2af7bf192ca52a2f62b86b58664bf8769df38ef44fb62bde43cd04d64dc03",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://6b9e5c38fabefc0bf21df8f65bebc64336a00ff54399a9aad0a626523fe4ff1a",
+				"dweb:/ipfs/QmUo3W97K1XcU7RsPenJ9cMttd9sHbGvfTxyyDyXBTERML"
+			]
+		},
+		"contracts/onChainID/contracts/version/Version.sol": {
+			"keccak256": "0x3378f3f0baa197a87f3d8853f029e75e44792fda3ca56165f8f9b3d1f17d22da",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://27f7f639dc156677c07ee35b8f09349f883a47de4a19aadd933166548aa8b0f5",
+				"dweb:/ipfs/QmNqRyFSUE2GnwSKnaSJmrrNTt8CnVmywB5cL5i9jcPkyZ"
+			]
+		}
+	},
+	"version": 1
+}

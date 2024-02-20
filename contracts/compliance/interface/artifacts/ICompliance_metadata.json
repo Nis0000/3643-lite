@@ -1,0 +1,267 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "_token",
+						"type": "address"
+					}
+				],
+				"name": "TokenBound",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "_token",
+						"type": "address"
+					}
+				],
+				"name": "TokenUnbound",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_token",
+						"type": "address"
+					}
+				],
+				"name": "bindToken",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_from",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint16",
+						"name": "code",
+						"type": "uint16"
+					}
+				],
+				"name": "canTransfer",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "created",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_from",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "destroyed",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_token",
+						"type": "address"
+					}
+				],
+				"name": "isTokenBound",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_from",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transferred",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_token",
+						"type": "address"
+					}
+				],
+				"name": "unbindToken",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"bindToken(address)": {
+					"details": "binds a token to the compliance contract",
+					"params": {
+						"_token": "address of the token to bind  Emits a TokenBound event"
+					}
+				},
+				"canTransfer(address,address,uint256,uint16)": {
+					"details": "checks that the transfer is compliant.  default compliance always returns true  READ ONLY FUNCTION, this function cannot be used to increment  counters, emit events, ...",
+					"params": {
+						"_amount": "The amount of tokens involved in the transfer",
+						"_from": "The address of the sender",
+						"_to": "The address of the receiver"
+					}
+				},
+				"created(address,uint256)": {
+					"details": "function called whenever tokens are created  on a wallet  this function can update state variables in the compliance contract  these state variables being used by `canTransfer` to decide if a transfer  is compliant or not depending on the values stored in these state variables and on  the parameters of the compliance smart contract",
+					"params": {
+						"_amount": "The amount of tokens involved in the transfer",
+						"_to": "The address of the receiver"
+					}
+				},
+				"destroyed(address,uint256)": {
+					"details": "function called whenever tokens are destroyed  this function can update state variables in the compliance contract  these state variables being used by `canTransfer` to decide if a transfer  is compliant or not depending on the values stored in these state variables and on  the parameters of the compliance smart contract",
+					"params": {
+						"_amount": "The amount of tokens involved in the transfer",
+						"_from": "The address of the receiver"
+					}
+				},
+				"isTokenBound(address)": {
+					"details": "Returns true if the address given corresponds to a token that is bound with the Compliance contract",
+					"params": {
+						"_token": "address of the token"
+					}
+				},
+				"transferred(address,address,uint256)": {
+					"details": "function called whenever tokens are transferred  from one wallet to another  this function can update state variables in the compliance contract  these state variables being used by `canTransfer` to decide if a transfer  is compliant or not depending on the values stored in these state variables and on  the parameters of the compliance smart contract",
+					"params": {
+						"_amount": "The amount of tokens involved in the transfer",
+						"_from": "The address of the sender",
+						"_to": "The address of the receiver"
+					}
+				},
+				"unbindToken(address)": {
+					"details": "unbinds a token from the compliance contract",
+					"params": {
+						"_token": "address of the token to unbind  Emits a TokenUnbound event"
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"events": {
+				"TokenBound(address)": {
+					"notice": "this event is emitted when a token has been bound to the compliance contract  the event is emitted by the bindToken function  `_token` is the address of the token to bind"
+				},
+				"TokenUnbound(address)": {
+					"notice": "this event is emitted when a token has been unbound from the compliance contract  the event is emitted by the unbindToken function  `_token` is the address of the token to unbind"
+				}
+			},
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/compliance/interface/ICompliance.sol": "ICompliance"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/compliance/interface/ICompliance.sol": {
+			"keccak256": "0xedfb6eba8e5ad69cb79ff91ea086a3de41abe3d67e7273323de422d06e884413",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://e99f7fb3275fb6e5fd3a5a3bd84c720f24f8745a58c7ce4ed2b249130361fff9",
+				"dweb:/ipfs/QmeBcYmhf4boB6NUYX58Q6EJNQirKeq73YEHdK7JEmsmJj"
+			]
+		}
+	},
+	"version": 1
+}

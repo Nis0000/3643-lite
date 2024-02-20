@@ -1,0 +1,362 @@
+{
+	"id": "2acf21df1902394354a763b1e96c2b0e",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.20",
+	"solcLongVersion": "0.8.20+commit.a1b79de6",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"solidity-main/contracts/interface/IImplementationAuthority.sol": {
+				"content": "// SPDX-License-Identifier: GPL-3.0\n\npragma solidity 0.8.20;\n\ninterface IImplementationAuthority {\n\n    // event emitted when the implementation contract is updated\n    event UpdatedImplementation(address newAddress);\n\n    /**\n     * @dev updates the address used as implementation by the proxies linked\n     * to this ImplementationAuthority contract\n     * @param _newImplementation the address of the new implementation contract\n     * only Owner can call\n     */\n    function updateImplementation(address _newImplementation) external;\n\n    /**\n     * @dev returns the address of the implementation\n     */\n    function getImplementation() external view returns(address);\n}\n"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			},
+			"remappings": []
+		}
+	},
+	"output": {
+		"contracts": {
+			"solidity-main/contracts/interface/IImplementationAuthority.sol": {
+				"IImplementationAuthority": {
+					"abi": [
+						{
+							"anonymous": false,
+							"inputs": [
+								{
+									"indexed": false,
+									"internalType": "address",
+									"name": "newAddress",
+									"type": "address"
+								}
+							],
+							"name": "UpdatedImplementation",
+							"type": "event"
+						},
+						{
+							"inputs": [],
+							"name": "getImplementation",
+							"outputs": [
+								{
+									"internalType": "address",
+									"name": "",
+									"type": "address"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "address",
+									"name": "_newImplementation",
+									"type": "address"
+								}
+							],
+							"name": "updateImplementation",
+							"outputs": [],
+							"stateMutability": "nonpayable",
+							"type": "function"
+						}
+					],
+					"devdoc": {
+						"kind": "dev",
+						"methods": {
+							"getImplementation()": {
+								"details": "returns the address of the implementation"
+							},
+							"updateImplementation(address)": {
+								"details": "updates the address used as implementation by the proxies linked to this ImplementationAuthority contract",
+								"params": {
+									"_newImplementation": "the address of the new implementation contract only Owner can call"
+								}
+							}
+						},
+						"version": 1
+					},
+					"evm": {
+						"assembly": "",
+						"bytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"deployedBytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"immutableReferences": {},
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"gasEstimates": null,
+						"legacyAssembly": null,
+						"methodIdentifiers": {
+							"getImplementation()": "aaf10f42",
+							"updateImplementation(address)": "025b22bc"
+						}
+					},
+					"metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAddress\",\"type\":\"address\"}],\"name\":\"UpdatedImplementation\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"getImplementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_newImplementation\",\"type\":\"address\"}],\"name\":\"updateImplementation\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"getImplementation()\":{\"details\":\"returns the address of the implementation\"},\"updateImplementation(address)\":{\"details\":\"updates the address used as implementation by the proxies linked to this ImplementationAuthority contract\",\"params\":{\"_newImplementation\":\"the address of the new implementation contract only Owner can call\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"solidity-main/contracts/interface/IImplementationAuthority.sol\":\"IImplementationAuthority\"},\"evmVersion\":\"shanghai\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"solidity-main/contracts/interface/IImplementationAuthority.sol\":{\"keccak256\":\"0xa889d5603ce6e8c223f24960ff2e75f50cf29df86b34b8d9c1e2a8e540604885\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://b192c28d8353b76a387ef422d1b07c02bafde90da7c9ff7fd39a45ef886f785b\",\"dweb:/ipfs/QmTrAtJ8ckHfPpJ4ytKpSDUi61zgyGL4LH59dJE151hwCY\"]}},\"version\":1}",
+					"storageLayout": {
+						"storage": [],
+						"types": null
+					},
+					"userdoc": {
+						"kind": "user",
+						"methods": {},
+						"version": 1
+					}
+				}
+			}
+		},
+		"sources": {
+			"solidity-main/contracts/interface/IImplementationAuthority.sol": {
+				"ast": {
+					"absolutePath": "solidity-main/contracts/interface/IImplementationAuthority.sol",
+					"exportedSymbols": {
+						"IImplementationAuthority": [
+							18
+						]
+					},
+					"id": 19,
+					"license": "GPL-3.0",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								"0.8",
+								".20"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "37:23:0"
+						},
+						{
+							"abstract": false,
+							"baseContracts": [],
+							"canonicalName": "IImplementationAuthority",
+							"contractDependencies": [],
+							"contractKind": "interface",
+							"fullyImplemented": false,
+							"id": 18,
+							"linearizedBaseContracts": [
+								18
+							],
+							"name": "IImplementationAuthority",
+							"nameLocation": "72:24:0",
+							"nodeType": "ContractDefinition",
+							"nodes": [
+								{
+									"anonymous": false,
+									"eventSelector": "87c4e67a766ffddda27f441d63853a36ae64fbb07775a7c59d395e064b204eeb",
+									"id": 5,
+									"name": "UpdatedImplementation",
+									"nameLocation": "175:21:0",
+									"nodeType": "EventDefinition",
+									"parameters": {
+										"id": 4,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 3,
+												"indexed": false,
+												"mutability": "mutable",
+												"name": "newAddress",
+												"nameLocation": "205:10:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 5,
+												"src": "197:18:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 2,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "197:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "196:20:0"
+									},
+									"src": "169:48:0"
+								},
+								{
+									"documentation": {
+										"id": 6,
+										"nodeType": "StructuredDocumentation",
+										"src": "223:243:0",
+										"text": " @dev updates the address used as implementation by the proxies linked\n to this ImplementationAuthority contract\n @param _newImplementation the address of the new implementation contract\n only Owner can call"
+									},
+									"functionSelector": "025b22bc",
+									"id": 11,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "updateImplementation",
+									"nameLocation": "480:20:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 9,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 8,
+												"mutability": "mutable",
+												"name": "_newImplementation",
+												"nameLocation": "509:18:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 11,
+												"src": "501:26:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 7,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "501:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "500:28:0"
+									},
+									"returnParameters": {
+										"id": 10,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "537:0:0"
+									},
+									"scope": 18,
+									"src": "471:67:0",
+									"stateMutability": "nonpayable",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 12,
+										"nodeType": "StructuredDocumentation",
+										"src": "544:65:0",
+										"text": " @dev returns the address of the implementation"
+									},
+									"functionSelector": "aaf10f42",
+									"id": 17,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "getImplementation",
+									"nameLocation": "623:17:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 13,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "640:2:0"
+									},
+									"returnParameters": {
+										"id": 16,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 15,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 17,
+												"src": "665:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 14,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "665:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "664:9:0"
+									},
+									"scope": 18,
+									"src": "614:60:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								}
+							],
+							"scope": 19,
+							"src": "62:614:0",
+							"usedErrors": [],
+							"usedEvents": [
+								5
+							]
+						}
+					],
+					"src": "37:640:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}

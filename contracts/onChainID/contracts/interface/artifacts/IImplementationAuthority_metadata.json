@@ -1,0 +1,95 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "newAddress",
+						"type": "address"
+					}
+				],
+				"name": "UpdatedImplementation",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "getImplementation",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_newImplementation",
+						"type": "address"
+					}
+				],
+				"name": "updateImplementation",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"getImplementation()": {
+					"details": "returns the address of the implementation"
+				},
+				"updateImplementation(address)": {
+					"details": "updates the address used as implementation by the proxies linked to this ImplementationAuthority contract",
+					"params": {
+						"_newImplementation": "the address of the new implementation contract only Owner can call"
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"solidity-main/contracts/interface/IImplementationAuthority.sol": "IImplementationAuthority"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"solidity-main/contracts/interface/IImplementationAuthority.sol": {
+			"keccak256": "0xa889d5603ce6e8c223f24960ff2e75f50cf29df86b34b8d9c1e2a8e540604885",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://b192c28d8353b76a387ef422d1b07c02bafde90da7c9ff7fd39a45ef886f785b",
+				"dweb:/ipfs/QmTrAtJ8ckHfPpJ4ytKpSDUi61zgyGL4LH59dJE151hwCY"
+			]
+		}
+	},
+	"version": 1
+}

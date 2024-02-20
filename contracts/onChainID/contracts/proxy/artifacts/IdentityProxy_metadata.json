@@ -1,0 +1,99 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_implementationAuthority",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "initialManagementKey",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "fallback"
+			},
+			{
+				"inputs": [],
+				"name": "implementationAuthority",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"constructor": {
+					"details": "constructor of the proxy Identity contract",
+					"params": {
+						"_implementationAuthority": "the implementation Authority contract address",
+						"initialManagementKey": "the management key at deployment  the proxy is going to use the logic deployed on the implementation contract  deployed at an address listed in the ImplementationAuthority contract"
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/onChainID/contracts/proxy/IdentityProxy.sol": "IdentityProxy"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/onChainID/contracts/interface/IImplementationAuthority.sol": {
+			"keccak256": "0xa889d5603ce6e8c223f24960ff2e75f50cf29df86b34b8d9c1e2a8e540604885",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://b192c28d8353b76a387ef422d1b07c02bafde90da7c9ff7fd39a45ef886f785b",
+				"dweb:/ipfs/QmTrAtJ8ckHfPpJ4ytKpSDUi61zgyGL4LH59dJE151hwCY"
+			]
+		},
+		"contracts/onChainID/contracts/proxy/IdentityProxy.sol": {
+			"keccak256": "0x70c513f93cda3f6ce07fa7d8a92a004209723d2552ca796ba16fdde9ade41e8f",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://41eecaa290b4d08556e48b6ea5e0ab5e4a25b07ee34a34177f3b75ae61e827ab",
+				"dweb:/ipfs/QmVsbe3xLoTCzXX4zUoe33oFeuM2Cfm4umXd5WHJf4RE6L"
+			]
+		}
+	},
+	"version": 1
+}

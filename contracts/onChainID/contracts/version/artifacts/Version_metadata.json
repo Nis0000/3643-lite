@@ -1,0 +1,64 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "version",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Version contract gives the versioning information of the implementation contract",
+			"kind": "dev",
+			"methods": {
+				"version()": {
+					"details": "Returns the string of the current version."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"solidity-main/contracts/version/Version.sol": "Version"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"solidity-main/contracts/version/Version.sol": {
+			"keccak256": "0x3378f3f0baa197a87f3d8853f029e75e44792fda3ca56165f8f9b3d1f17d22da",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://27f7f639dc156677c07ee35b8f09349f883a47de4a19aadd933166548aa8b0f5",
+				"dweb:/ipfs/QmNqRyFSUE2GnwSKnaSJmrrNTt8CnVmywB5cL5i9jcPkyZ"
+			]
+		}
+	},
+	"version": 1
+}

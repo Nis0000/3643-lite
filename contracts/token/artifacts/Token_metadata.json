@@ -1,0 +1,1722 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "identityRegistry_",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "compliance_",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "name_",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "symbol_",
+						"type": "string"
+					},
+					{
+						"internalType": "uint8",
+						"name": "decimals_",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "AccessControlBadConfirmation",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "neededRole",
+						"type": "bytes32"
+					}
+				],
+				"name": "AccessControlUnauthorizedAccount",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_userAddress",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "bool",
+						"name": "_isFrozen",
+						"type": "bool"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_owner",
+						"type": "address"
+					}
+				],
+				"name": "AddressFrozen",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					}
+				],
+				"name": "Approval",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_compliance",
+						"type": "address"
+					}
+				],
+				"name": "ComplianceAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_identityRegistry",
+						"type": "address"
+					}
+				],
+				"name": "IdentityRegistryAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "Paused",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_lostWallet",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_newWallet",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_investorOnchainID",
+						"type": "address"
+					}
+				],
+				"name": "RecoverySuccess",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "previousAdminRole",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "newAdminRole",
+						"type": "bytes32"
+					}
+				],
+				"name": "RoleAdminChanged",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "RoleGranted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "RoleRevoked",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_userAddress",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "TokensFrozen",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_userAddress",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "TokensUnfrozen",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					}
+				],
+				"name": "Transfer",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "Unpaused",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_newOnchainID",
+						"type": "address"
+					}
+				],
+				"name": "UpdatedOnchainID",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "AGENT_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "DEFAULT_ADMIN_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "OWNER_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					}
+				],
+				"name": "allowance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "approve",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "balanceOf",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "accounts",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "amounts",
+						"type": "uint256[]"
+					}
+				],
+				"name": "batchBurn",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "fromList",
+						"type": "address[]"
+					},
+					{
+						"internalType": "address[]",
+						"name": "toList",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "amounts",
+						"type": "uint256[]"
+					}
+				],
+				"name": "batchForcedTransfer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "accounts",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "amounts",
+						"type": "uint256[]"
+					}
+				],
+				"name": "batchFreezePartialTokens",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "toList",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "amounts",
+						"type": "uint256[]"
+					}
+				],
+				"name": "batchMint",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "accounts",
+						"type": "address[]"
+					},
+					{
+						"internalType": "bool[]",
+						"name": "freeze",
+						"type": "bool[]"
+					}
+				],
+				"name": "batchSetAddressFrozen",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "toList",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "amounts",
+						"type": "uint256[]"
+					}
+				],
+				"name": "batchTransfer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "fromList",
+						"type": "address[]"
+					},
+					{
+						"internalType": "address[]",
+						"name": "toList",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "amounts",
+						"type": "uint256[]"
+					}
+				],
+				"name": "batchTransferFrom",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "accounts",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "amounts",
+						"type": "uint256[]"
+					}
+				],
+				"name": "batchUnfreezePartialTokens",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "burn",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "compliance",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "decimals",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_subtractedValue",
+						"type": "uint256"
+					}
+				],
+				"name": "decreaseAllowance",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "forcedTransfer",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "freezePartialTokens",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "getFrozenTokens",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					}
+				],
+				"name": "getRoleAdmin",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "grantRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "hasRole",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "identityRegistry",
+				"outputs": [
+					{
+						"internalType": "contract IIdentityRegistry",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_addedValue",
+						"type": "uint256"
+					}
+				],
+				"name": "increaseAllowance",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "isFrozen",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "mint",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "name",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "onchainID",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "pause",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "paused",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "lostWallet",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "newWallet",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "investorOnchainID",
+						"type": "address"
+					}
+				],
+				"name": "recoveryAddress",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "callerConfirmation",
+						"type": "address"
+					}
+				],
+				"name": "renounceRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "revokeRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "freeze",
+						"type": "bool"
+					}
+				],
+				"name": "setAddressFrozen",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newCompliance",
+						"type": "address"
+					}
+				],
+				"name": "setCompliance",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newIdentityRegistry",
+						"type": "address"
+					}
+				],
+				"name": "setIdentityRegistry",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "onchainID_",
+						"type": "address"
+					}
+				],
+				"name": "setOnchainID",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes4",
+						"name": "interfaceId",
+						"type": "bytes4"
+					}
+				],
+				"name": "supportsInterface",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "symbol",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalSupply",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transfer",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transferFrom",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "unfreezePartialTokens",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "unpause",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "version",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"errors": {
+				"AccessControlBadConfirmation()": [
+					{
+						"details": "The caller of a function is not the expected one. NOTE: Don't confuse with {AccessControlUnauthorizedAccount}."
+					}
+				],
+				"AccessControlUnauthorizedAccount(address,bytes32)": [
+					{
+						"details": "The `account` is missing a role."
+					}
+				]
+			},
+			"events": {
+				"Approval(address,address,uint256)": {
+					"details": "Emitted when the allowance of a `spender` for an `owner` is set by a call to {approve}. `value` is the new allowance."
+				},
+				"Paused(address)": {
+					"details": "Emitted when the pause is triggered by `account`."
+				},
+				"RoleAdminChanged(bytes32,bytes32,bytes32)": {
+					"details": "Emitted when `newAdminRole` is set as ``role``'s admin role, replacing `previousAdminRole` `DEFAULT_ADMIN_ROLE` is the starting admin for all roles, despite {RoleAdminChanged} not being emitted signaling this."
+				},
+				"RoleGranted(bytes32,address,address)": {
+					"details": "Emitted when `account` is granted `role`. `sender` is the account that originated the contract call, an admin role bearer except when using {AccessControl-_setupRole}."
+				},
+				"RoleRevoked(bytes32,address,address)": {
+					"details": "Emitted when `account` is revoked `role`. `sender` is the account that originated the contract call:   - if using `revokeRole`, it is the admin role bearer   - if using `renounceRole`, it is the role bearer (i.e. `account`)"
+				},
+				"Transfer(address,address,uint256)": {
+					"details": "Emitted when `value` tokens are moved from one account (`from`) to another (`to`). Note that `value` may be zero."
+				},
+				"Unpaused(address)": {
+					"details": "Emitted when the pause is lifted by `account`."
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"allowance(address,address)": {
+					"details": "Returns the allowance of tokens that an owner has allowed a spender to spend.",
+					"params": {
+						"owner": "The address of the owner.",
+						"spender": "The address of the spender."
+					}
+				},
+				"approve(address,uint256)": {
+					"params": {
+						"amount": "The number of tokens to be spent",
+						"spender": "The address of the account allowed to spend the tokens"
+					},
+					"returns": {
+						"_0": "A boolean that indicates if the operation was successful."
+					}
+				},
+				"balanceOf(address)": {
+					"params": {
+						"account": "The address of the account."
+					},
+					"returns": {
+						"_0": "uint256 The balance of the specified account."
+					}
+				},
+				"batchBurn(address[],uint256[])": {
+					"details": "Perform a batch burn of tokens.",
+					"params": {
+						"accounts": "An array of addresses from which to burn tokens.",
+						"amounts": "An array of amounts to burn."
+					}
+				},
+				"batchForcedTransfer(address[],address[],uint256[])": {
+					"details": "Perform a batch forced transfer of tokens.",
+					"params": {
+						"amounts": "An array of amounts to transfer.",
+						"fromList": "An array of sender addresses.",
+						"toList": "An array of receiver addresses."
+					}
+				},
+				"batchFreezePartialTokens(address[],uint256[])": {
+					"details": "Perform a batch freezing of partial tokens from multiple addresses.",
+					"params": {
+						"accounts": "An array of addresses from which to freeze tokens.",
+						"amounts": "An array of amounts to freeze."
+					}
+				},
+				"batchMint(address[],uint256[])": {
+					"details": "Perform a batch minting of tokens.",
+					"params": {
+						"amounts": "An array of amounts to mint.",
+						"toList": "An array of receiver addresses."
+					}
+				},
+				"batchSetAddressFrozen(address[],bool[])": {
+					"details": "Perform a batch freezing / unfreezing of addresses.",
+					"params": {
+						"accounts": "An array of addresses to freeze.",
+						"freeze": "An array of boolean values indicating whether to freeze the corresponding address."
+					}
+				},
+				"batchTransfer(address[],uint256[])": {
+					"params": {
+						"amounts": "An array of amounts to transfer.",
+						"toList": "An array of receiver addresses."
+					}
+				},
+				"batchTransferFrom(address[],address[],uint256[])": {
+					"details": "Perform a batch forced transfer of tokens.",
+					"params": {
+						"amounts": "An array of amounts to transfer.",
+						"fromList": "An array of sender addresses.",
+						"toList": "An array of receiver addresses."
+					}
+				},
+				"batchUnfreezePartialTokens(address[],uint256[])": {
+					"details": "Perform a batch unfreezing of partial tokens from multiple addresses.",
+					"params": {
+						"accounts": "An array of addresses from which to unfreeze tokens.",
+						"amounts": "An array of amounts to unfreeze."
+					}
+				},
+				"burn(address,uint256)": {
+					"params": {
+						"account": "The address from which the tokens will be burned",
+						"amount": "The number of tokens to be burned"
+					}
+				},
+				"compliance()": {
+					"details": "Returns the current Compliance contract linked to the token."
+				},
+				"decimals()": {
+					"details": "Returns the number of decimals the token uses."
+				},
+				"decreaseAllowance(address,uint256)": {
+					"params": {
+						"_subtractedValue": "The decrease in allowance",
+						"spender": "The address of the account allowed to spend the tokens"
+					},
+					"returns": {
+						"_0": "A boolean that indicates if the operation was successful."
+					}
+				},
+				"forcedTransfer(address,address,uint256)": {
+					"params": {
+						"amount": "The number of tokens to be transferred",
+						"from": "The address from which the tokens will be transferred",
+						"to": "The address to which the tokens will be transferred"
+					},
+					"returns": {
+						"_0": "Returns true if the transfer was successful, otherwise false"
+					}
+				},
+				"freezePartialTokens(address,uint256)": {
+					"params": {
+						"account": "The account in which the tokens will be frozen",
+						"amount": "The amount of tokens to be frozen"
+					}
+				},
+				"getFrozenTokens(address)": {
+					"details": "Returns the number of frozen tokens of an address.",
+					"params": {
+						"account": "The address to check.Fset"
+					}
+				},
+				"getRoleAdmin(bytes32)": {
+					"details": "Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}."
+				},
+				"grantRole(bytes32,address)": {
+					"details": "Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleGranted} event."
+				},
+				"hasRole(bytes32,address)": {
+					"details": "Returns `true` if `account` has been granted `role`."
+				},
+				"identityRegistry()": {
+					"details": "Returns the current Identity Registry contract linked to the token."
+				},
+				"increaseAllowance(address,uint256)": {
+					"params": {
+						"_addedValue": "The increase in allowance",
+						"spender": "The address of the account allowed to spend the tokens"
+					},
+					"returns": {
+						"_0": "A boolean that indicates if the operation was successful."
+					}
+				},
+				"isFrozen(address)": {
+					"details": "Returns whether an address is frozen.",
+					"params": {
+						"account": "The address to check."
+					}
+				},
+				"mint(address,uint256)": {
+					"params": {
+						"_to": "The address that will receive the minted tokens",
+						"amount": "The number of tokens to be minted"
+					}
+				},
+				"name()": {
+					"details": "Returns the name of the token."
+				},
+				"onchainID()": {
+					"details": "Returns the onchainID of the token."
+				},
+				"pause()": {
+					"details": "Can only be called by an agent of the contract"
+				},
+				"paused()": {
+					"details": "Returns true if the contract is paused, and false otherwise."
+				},
+				"recoveryAddress(address,address,address)": {
+					"details": "Recover tokens from a lost wallet and transfer them to a new wallet. Can only be called by an agent of the contract.",
+					"params": {
+						"investorOnchainID": "The onchainID of the investor.",
+						"lostWallet": "The address of the lost wallet.",
+						"newWallet": "The address of the new wallet."
+					},
+					"returns": {
+						"_0": "true if the recovery is successful."
+					}
+				},
+				"renounceRole(bytes32,address)": {
+					"details": "Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been revoked `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `callerConfirmation`. May emit a {RoleRevoked} event."
+				},
+				"revokeRole(bytes32,address)": {
+					"details": "Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleRevoked} event."
+				},
+				"setAddressFrozen(address,bool)": {
+					"params": {
+						"account": "The address to be frozen or unfrozen",
+						"freeze": "The boolean value indicating whether to freeze (true) or unfreeze (false) the account"
+					}
+				},
+				"setCompliance(address)": {
+					"params": {
+						"newCompliance": "The address of the new Compliance contract"
+					}
+				},
+				"setIdentityRegistry(address)": {
+					"params": {
+						"newIdentityRegistry": "The address of the new Identity Registry contract"
+					}
+				},
+				"setOnchainID(address)": {
+					"details": "Set the onchainID of a token. Can only be called by an owner of the contract.",
+					"params": {
+						"onchainID_": "The address of the onchainID."
+					}
+				},
+				"supportsInterface(bytes4)": {
+					"details": "See {IERC165-supportsInterface}."
+				},
+				"symbol()": {
+					"details": "Returns the symbol of the token."
+				},
+				"totalSupply()": {
+					"details": "Returns the total supply of the token."
+				},
+				"transfer(address,uint256)": {
+					"details": "Transfer tokens to another address. Requires that the _msgSender() and to addresses are not frozen and that the value should not exceed available balance.",
+					"params": {
+						"amount": "The number of tokens to transfer.",
+						"to": "The address of the receiver."
+					},
+					"returns": {
+						"_0": "true if the transfer is successful."
+					}
+				},
+				"transferFrom(address,address,uint256)": {
+					"details": "ERC-20 overridden function that include logic to check for trade validityTransfer tokens from one address to another. Requires that the `from` and `to` addresses are not frozen and that the value should not exceed available balance.",
+					"params": {
+						"amount": "The number of tokens to transfer.",
+						"from": "The address of the sender.",
+						"to": "The address of the receiver."
+					},
+					"returns": {
+						"_0": "true if the transfer is successful."
+					}
+				},
+				"unfreezePartialTokens(address,uint256)": {
+					"params": {
+						"account": "The account from which the tokens will be unfrozen",
+						"amount": "The amount of tokens to be unfrozen"
+					}
+				},
+				"unpause()": {
+					"details": "Can only be called by an agent of the contract"
+				},
+				"version()": {
+					"details": "Returns the version of the token."
+				}
+			},
+			"stateVariables": {
+				"_balances": {
+					"details": "ERC20 basic variables"
+				},
+				"_compliance": {
+					"details": "Compliance contract linked to the onchain validator system"
+				},
+				"_frozen": {
+					"details": "Variables of freeze and pause functions"
+				},
+				"_identityRegistry": {
+					"details": "Identity Registry contract used by the onchain validator system"
+				},
+				"_name": {
+					"details": "Token information"
+				}
+			},
+			"title": "ERC-3643 - T-Rex Token (Version RAPTOR-5.0.0)",
+			"version": 1
+		},
+		"userdoc": {
+			"events": {
+				"AddressFrozen(address,bool,address)": {
+					"notice": "this event is emitted when the wallet of an investor is frozen or unfrozen  the event is emitted by setAddressFrozen and batchSetAddressFrozen functions  `_userAddress` is the wallet of the investor that is concerned by the freezing status  `_isFrozen` is the freezing status of the wallet  if `_isFrozen` equals `true` the wallet is frozen after emission of the event  if `_isFrozen` equals `false` the wallet is unfrozen after emission of the event  `_owner` is the address of the agent who called the function to freeze the wallet"
+				},
+				"ComplianceAdded(address)": {
+					"notice": "this event is emitted when the Compliance has been set for the token  the event is emitted by the token constructor and by the setCompliance function  `_compliance` is the address of the Compliance contract of the token"
+				},
+				"IdentityRegistryAdded(address)": {
+					"notice": "this event is emitted when the IdentityRegistry has been set for the token  the event is emitted by the token constructor and by the setIdentityRegistry function  `_identityRegistry` is the address of the Identity Registry of the token"
+				},
+				"RecoverySuccess(address,address,address)": {
+					"notice": "this event is emitted when an investor successfully recovers his tokens  the event is emitted by the recoveryAddress function  `_lostWallet` is the address of the wallet that the investor lost access to  `_newWallet` is the address of the wallet that the investor provided for the recovery  `_investorOnchainID` is the address of the onchainID of the investor who asked for a recovery"
+				},
+				"TokensFrozen(address,uint256)": {
+					"notice": "this event is emitted when a certain amount of tokens is frozen on a wallet  the event is emitted by freezePartialTokens and batchFreezePartialTokens functions  `_userAddress` is the wallet of the investor that is concerned by the freezing status  `_amount` is the amount of tokens that are frozen"
+				},
+				"TokensUnfrozen(address,uint256)": {
+					"notice": "this event is emitted when a certain amount of tokens is unfrozen on a wallet  the event is emitted by unfreezePartialTokens and batchUnfreezePartialTokens functions  `_userAddress` is the wallet of the investor that is concerned by the freezing status  `_amount` is the amount of tokens that are unfrozen"
+				},
+				"UpdatedOnchainID(address)": {
+					"notice": "this event is emitted when the onchainID  is updated.  the event is emitted by the token init function and by the setOnchainID function  `_newOnchainID` is the address of the onchainID of the token"
+				}
+			},
+			"kind": "user",
+			"methods": {
+				"approve(address,uint256)": {
+					"notice": "Approve `amount` tokens to be spent by `spender`"
+				},
+				"balanceOf(address)": {
+					"notice": "Get the balance of a specified account."
+				},
+				"burn(address,uint256)": {
+					"notice": "Burns tokens from a specified address"
+				},
+				"decreaseAllowance(address,uint256)": {
+					"notice": "Decrease the allowance provided to `spender` by the caller"
+				},
+				"forcedTransfer(address,address,uint256)": {
+					"notice": "Executes a forced transfer of tokens from one address to another"
+				},
+				"freezePartialTokens(address,uint256)": {
+					"notice": "Freezes a specified amount of tokens in a specified account"
+				},
+				"increaseAllowance(address,uint256)": {
+					"notice": "Increase the allowance provided to `spender` by the caller"
+				},
+				"mint(address,uint256)": {
+					"notice": "Mints new tokens and assigns them to a specified address"
+				},
+				"pause()": {
+					"notice": "Pause all token operations"
+				},
+				"setAddressFrozen(address,bool)": {
+					"notice": "Freezes or unfreezes a specified address"
+				},
+				"setCompliance(address)": {
+					"notice": "Sets the Compliance contract address"
+				},
+				"setIdentityRegistry(address)": {
+					"notice": "Sets the Identity Registry contract address"
+				},
+				"setOnchainID(address)": {
+					"notice": "Emits an UpdatedOnchainID event."
+				},
+				"transfer(address,uint256)": {
+					"notice": "ERC-20 overridden function that include logic to check for trade validity."
+				},
+				"unfreezePartialTokens(address,uint256)": {
+					"notice": "Unfreezes a specified amount of tokens in a specified account"
+				},
+				"unpause()": {
+					"notice": "Unpause all token operations"
+				}
+			},
+			"notice": "An ERC-3643 compliant token with onchain validators and compliance checks.",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/token/Token.sol": "Token"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@onchain-id/solidity/contracts/interface/IClaimIssuer.sol": {
+			"keccak256": "0xbb0ece96ebc110624705b3b6859367974ba6b17cff353df43a83b108680f0d26",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://55a65e7c5daab4b177604b00c68835377386390c05cee4dc26c91aef86af7237",
+				"dweb:/ipfs/QmdYNJMYJxFnpaSQZafLpFPER9wyMkUZmGkQko1XrUMHP7"
+			]
+		},
+		"@onchain-id/solidity/contracts/interface/IERC734.sol": {
+			"keccak256": "0x7ca841caeee4116062dba880a955796c773d1b0b35a7d69b67104d9e6bd2705a",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://bc05e6f2872be12d06cfe630c13d1d6d74b5b9b587f0797615e5dac88e84f4c8",
+				"dweb:/ipfs/Qme2h6ah6uYShmK5x3fgfsH7rCqYtSUns9tyRyKFJYef6c"
+			]
+		},
+		"@onchain-id/solidity/contracts/interface/IERC735.sol": {
+			"keccak256": "0x60ac71cd3e106d656dcc26e6f58df6e8c487ce5d0cdeed6f5449cf974a24e587",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://26716e36966cb392d6fa8f9a470b69ded94fedf7f9cdd5095af0028d194baa6d",
+				"dweb:/ipfs/QmYJ7Lc4vk1LNHtqZPWtZSpStCepQRgzUWvVaGAb5yLFV8"
+			]
+		},
+		"@onchain-id/solidity/contracts/interface/IIdentity.sol": {
+			"keccak256": "0xa3166f33baa94c9f2a010c8618fdd6038b4a64636eab809c50442c835f08f8dc",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://b84d33d807a86846807678787e89f01ee81903968506caf5bc55c36622670c80",
+				"dweb:/ipfs/QmQxG5fp38FTzK22rArNMpknA276Ji5mrrEuaoCR7pwzsH"
+			]
+		},
+		"@openzeppelin/contracts/access/AccessControl.sol": {
+			"keccak256": "0xa0e92d42942f4f57c5be50568dac11e9d00c93efcb458026e18d2d9b9b2e7308",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://46326c0bb1e296b67185e81c918e0b40501b8b6386165855df0a3f3c634b6a80",
+				"dweb:/ipfs/QmTwyrDYtsxsk6pymJTK94PnEpzsmkpUxFuzEiakDopy4Z"
+			]
+		},
+		"@openzeppelin/contracts/access/IAccessControl.sol": {
+			"keccak256": "0xb6b36edd6a2999fd243ff226d6cbf84bd71af2432bbd0dfe19392996a1d9cb41",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1fd2f35495652e57e3f99bc6c510bc5f7dd398a176ea2e72d8ed730aebc6ca26",
+				"dweb:/ipfs/QmTQV6X4gkikTib49cho5iDX3JvSQbdsoEChoDwrk3CbbH"
+			]
+		},
+		"@openzeppelin/contracts/security/Pausable.sol": {
+			"keccak256": "0x0849d93b16c9940beb286a7864ed02724b248b93e0d80ef6355af5ef15c64773",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4ddabb16009cd17eaca3143feadf450ac13e72919ebe2ca50e00f61cb78bc004",
+				"dweb:/ipfs/QmSPwPxX7d6TTWakN5jy5wsaGkS1y9TW8fuhGSraMkLk2B"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0xc6a8ff0ea489379b61faa647490411b80102578440ab9d84e9a957cc12164e70",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0ea104e577e63faea3b69c415637e99e755dcbf64c5833d7140c35a714d6d90c",
+				"dweb:/ipfs/Qmau6x4Ns9XdyynRCNNp3RhLqijJjFm7z5fyZazfYFGYdq"
+			]
+		},
+		"@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12",
+				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
+			]
+		},
+		"@openzeppelin/contracts/utils/introspection/ERC165.sol": {
+			"keccak256": "0x9e8778b14317ba9e256c30a76fd6c32b960af621987f56069e1e819c77c6a133",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1777404f1dcd0fac188e55a288724ec3c67b45288e49cc64723e95e702b49ab8",
+				"dweb:/ipfs/QmZFdC626GButBApwDUvvTnUzdinevC3B24d7yyh57XkiA"
+			]
+		},
+		"@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+			"keccak256": "0x4296879f55019b23e135000eb36896057e7101fb7fb859c5ef690cf14643757b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://87b3541437c8c443ccd36795e56a338ed12855eec17f8da624511b8d1a7e14df",
+				"dweb:/ipfs/QmeJQCtZrQjtJLr6u7ZHWeH3pBnjtLWzvRrKViAi7UZqxL"
+			]
+		},
+		"contracts/compliance/interface/ICompliance.sol": {
+			"keccak256": "0xedfb6eba8e5ad69cb79ff91ea086a3de41abe3d67e7273323de422d06e884413",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://e99f7fb3275fb6e5fd3a5a3bd84c720f24f8745a58c7ce4ed2b249130361fff9",
+				"dweb:/ipfs/QmeBcYmhf4boB6NUYX58Q6EJNQirKeq73YEHdK7JEmsmJj"
+			]
+		},
+		"contracts/registry/interface/IClaimIssuersRegistry.sol": {
+			"keccak256": "0xa39c1be91cea916b2510a7d741b9a1e78fa03ed8ffee0be6aee95d26e675d874",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://157624f0af04aee04c381389d8fd62a3cfddbd3ab935a89b34f6b931fddce99f",
+				"dweb:/ipfs/QmQ9zQ4ueNM75VjDWbVRiDyjW3cdS7k3LWQiZqHeUnfRaJ"
+			]
+		},
+		"contracts/registry/interface/IClaimTopicsRegistry.sol": {
+			"keccak256": "0x017f014ce235fc76eb10724fed3a682c47230ba5ff5f3085d437a30294c00fdb",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://9f3b2ee96ecf05e6bb469619f38e469887d1eca34a65b397648f01a033afe3c1",
+				"dweb:/ipfs/QmQb6p6HHMUWU5ezTFKpMgeDQcsKUDRMfuJt6uLQPUv6oK"
+			]
+		},
+		"contracts/registry/interface/IIdentityRegistry.sol": {
+			"keccak256": "0xbc47d0a331c5a816e8eee459239de4d312a578fbad75985af02ffb04e0389743",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://39a4cdc9fe0479f17ace597e185ee1f179f540af838a5a331244150163bb10f6",
+				"dweb:/ipfs/QmWQqSWAgndgbYT6pyHZ9SexrJHZy3XyQ3GMpLRwT743eL"
+			]
+		},
+		"contracts/registry/interface/IIdentityRegistryStorage.sol": {
+			"keccak256": "0xaca97bc7c58c5995e8811774365b4d7e9752e447bf6e137fb632740b2801fd5f",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://822e05a46c0e6042cd0d8421ae297b88cfecff55547e7cf2ffc3583759232675",
+				"dweb:/ipfs/QmezT6ghV6HppsstueLZpLszjCkEqjBKggAjFduVUtz8dL"
+			]
+		},
+		"contracts/token/IToken.sol": {
+			"keccak256": "0x2bd803bf4c94c206a40052ad13cf63fcf6d6c1d13eb0ff6e2513863faa159ae6",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://fff7c48b75dccd5998e7e68dc219331db7b7a6421d9feb66ea8694cb286bf566",
+				"dweb:/ipfs/QmVSvtaXgVjuivmc9sNchy1PRh1uQGjHd1iszi5gXHHCvV"
+			]
+		},
+		"contracts/token/Token.sol": {
+			"keccak256": "0x65b72a70dc2d218a18320280feaa5f3943a0797a2d301889c041bee445c0a98f",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://25c103c6816e0849ab76f0ac0783b0f8c94bf26ea371cc6340a968292da46ae1",
+				"dweb:/ipfs/QmPpAfVQNQccWkmzNyFtfP6ujDrFn7oNMjJsqCh8fQsNKL"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,0 +1,273 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "OwnableInvalidOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "OwnableUnauthorizedAccount",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "claimTopic",
+						"type": "uint256"
+					}
+				],
+				"name": "ClaimTopicAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "claimTopic",
+						"type": "uint256"
+					}
+				],
+				"name": "ClaimTopicRemoved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_claimTopic",
+						"type": "uint256"
+					}
+				],
+				"name": "addClaimTopic",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getClaimTopics",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_claimTopic",
+						"type": "uint256"
+					}
+				],
+				"name": "removeClaimTopic",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "A registry for managing claim topics.",
+			"errors": {
+				"OwnableInvalidOwner(address)": [
+					{
+						"details": "The owner is not a valid owner account. (eg. `address(0)`)"
+					}
+				],
+				"OwnableUnauthorizedAccount(address)": [
+					{
+						"details": "The caller account is not authorized to perform an operation."
+					}
+				]
+			},
+			"kind": "dev",
+			"methods": {
+				"addClaimTopic(uint256)": {
+					"details": "Can only be called by the owner of the contract. Emits a ClaimTopicAdded event.",
+					"params": {
+						"_claimTopic": "The claim topic to add."
+					}
+				},
+				"getClaimTopics()": {
+					"returns": {
+						"_0": "uint256[] An array of claim topics."
+					}
+				},
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"removeClaimTopic(uint256)": {
+					"details": "Can only be called by the owner of the contract. Emits a ClaimTopicRemoved event.",
+					"params": {
+						"_claimTopic": "The claim topic to remove."
+					}
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				}
+			},
+			"stateVariables": {
+				"_claimTopics": {
+					"details": "An array to hold all required claim topics."
+				}
+			},
+			"title": "ERC-3643 - ClaimTopicsRegistry",
+			"version": 1
+		},
+		"userdoc": {
+			"events": {
+				"ClaimTopicAdded(uint256)": {
+					"notice": "this event is emitted when a claim topic has been added to the ClaimTopicsRegistry  the event is emitted by the 'addClaimTopic' function  `claimTopic` is the required claim added to the Claim Topics Registry"
+				},
+				"ClaimTopicRemoved(uint256)": {
+					"notice": "this event is emitted when a claim topic has been removed from the ClaimTopicsRegistry  the event is emitted by the 'removeClaimTopic' function  `claimTopic` is the required claim removed from the Claim Topics Registry"
+				}
+			},
+			"kind": "user",
+			"methods": {
+				"addClaimTopic(uint256)": {
+					"notice": "Adds a claim topic to the registry."
+				},
+				"getClaimTopics()": {
+					"notice": "Retrieves all claim topics from the registry."
+				},
+				"removeClaimTopic(uint256)": {
+					"notice": "Removes a claim topic from the registry."
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/registry/ClaimTopicsRegistry.sol": "ClaimTopicsRegistry"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/access/Ownable.sol": {
+			"keccak256": "0xe6dd1bb1b56d51404c2664bf6a0fce775e228e0b21af652072be31534e72728e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c60f1471735a5f3bde3c627f9da51ddf7cc28b4d536cc99ff744c8d38e4ab895",
+				"dweb:/ipfs/Qmap8wDcLTZaPjzv6g8mrrFX6h7qmzWaM2cABndwvSAzA8"
+			]
+		},
+		"@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12",
+				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
+			]
+		},
+		"contracts/registry/ClaimTopicsRegistry.sol": {
+			"keccak256": "0xd527770dc0e8f4001bb178228b4a0aee1ae26a66be00ba6e821bc814e27a5788",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://f36c7818163a469b4529dc73d0dc61908e6aea42cc0425c7bab1b99cacb6450d",
+				"dweb:/ipfs/QmNTqxoi6vNrVc95P6aT1HVqBxSmLyYJijDdjeLcuYieYT"
+			]
+		},
+		"contracts/registry/interface/IClaimTopicsRegistry.sol": {
+			"keccak256": "0x017f014ce235fc76eb10724fed3a682c47230ba5ff5f3085d437a30294c00fdb",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://9f3b2ee96ecf05e6bb469619f38e469887d1eca34a65b397648f01a033afe3c1",
+				"dweb:/ipfs/QmQb6p6HHMUWU5ezTFKpMgeDQcsKUDRMfuJt6uLQPUv6oK"
+			]
+		}
+	},
+	"version": 1
+}

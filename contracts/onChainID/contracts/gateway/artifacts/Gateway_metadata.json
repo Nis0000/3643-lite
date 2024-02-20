@@ -1,0 +1,783 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "idFactoryAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address[]",
+						"name": "signersToApprove",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "ECDSAInvalidSignature",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "length",
+						"type": "uint256"
+					}
+				],
+				"name": "ECDSAInvalidSignatureLength",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "s",
+						"type": "bytes32"
+					}
+				],
+				"name": "ECDSAInvalidSignatureS",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "signature",
+						"type": "bytes"
+					}
+				],
+				"name": "ExpiredSignature",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "OwnableInvalidOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "OwnableUnauthorizedAccount",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "signature",
+						"type": "bytes"
+					}
+				],
+				"name": "RevokedSignature",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "signature",
+						"type": "bytes"
+					}
+				],
+				"name": "SignatureAlreadyRevoked",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "signature",
+						"type": "bytes"
+					}
+				],
+				"name": "SignatureNotRevoked",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "signer",
+						"type": "address"
+					}
+				],
+				"name": "SignerAlreadyApproved",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "signer",
+						"type": "address"
+					}
+				],
+				"name": "SignerAlreadyNotApproved",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "length",
+						"type": "uint256"
+					}
+				],
+				"name": "StringsInsufficientHexLength",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "TooManySigners",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "signer",
+						"type": "address"
+					}
+				],
+				"name": "UnapprovedSigner",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "ZeroAddress",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes",
+						"name": "signature",
+						"type": "bytes"
+					}
+				],
+				"name": "SignatureApproved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes",
+						"name": "signature",
+						"type": "bytes"
+					}
+				],
+				"name": "SignatureRevoked",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "signer",
+						"type": "address"
+					}
+				],
+				"name": "SignerApproved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "signer",
+						"type": "address"
+					}
+				],
+				"name": "SignerRevoked",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "signature",
+						"type": "bytes"
+					}
+				],
+				"name": "approveSignature",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "signer",
+						"type": "address"
+					}
+				],
+				"name": "approveSigner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "approvedSigners",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "callFactory",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "identityOwner",
+						"type": "address"
+					}
+				],
+				"name": "deployIdentityForWallet",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "identityOwner",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "salt",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "signatureExpiry",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "signature",
+						"type": "bytes"
+					}
+				],
+				"name": "deployIdentityWithSalt",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "identityOwner",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "salt",
+						"type": "string"
+					},
+					{
+						"internalType": "bytes32[]",
+						"name": "managementKeys",
+						"type": "bytes32[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "signatureExpiry",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "signature",
+						"type": "bytes"
+					}
+				],
+				"name": "deployIdentityWithSaltAndManagementKeys",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "idFactory",
+				"outputs": [
+					{
+						"internalType": "contract IdFactory",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "signature",
+						"type": "bytes"
+					}
+				],
+				"name": "revokeSignature",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "signer",
+						"type": "address"
+					}
+				],
+				"name": "revokeSigner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"name": "revokedSignatures",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferFactoryOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"errors": {
+				"ECDSAInvalidSignature()": [
+					{
+						"details": "The signature derives the `address(0)`."
+					}
+				],
+				"ECDSAInvalidSignatureLength(uint256)": [
+					{
+						"details": "The signature has an invalid length."
+					}
+				],
+				"ECDSAInvalidSignatureS(bytes32)": [
+					{
+						"details": "The signature has an S value that is in the upper half order."
+					}
+				],
+				"OwnableInvalidOwner(address)": [
+					{
+						"details": "The owner is not a valid owner account. (eg. `address(0)`)"
+					}
+				],
+				"OwnableUnauthorizedAccount(address)": [
+					{
+						"details": "The caller account is not authorized to perform an operation."
+					}
+				],
+				"StringsInsufficientHexLength(uint256,uint256)": [
+					{
+						"details": "The `value` string doesn't fit in the specified `length`."
+					}
+				]
+			},
+			"kind": "dev",
+			"methods": {
+				"approveSignature(bytes)": {
+					"details": "Remove a signature from the revoke list.",
+					"params": {
+						"signature": "the signature to approve."
+					}
+				},
+				"approveSigner(address)": {
+					"details": "Approve a signer to sign ONCHAINID deployments. If the Gateway is setup to require signature, only  deployments requested with a valid signature from an approved signer will be accepted.  If the gateway does not require a signature,",
+					"params": {
+						"signer": "the signer address to approve."
+					}
+				},
+				"callFactory(bytes)": {
+					"details": "Call a function on the factory. Only the owner of the Gateway can call this method.",
+					"params": {
+						"data": "the data to call on the factory."
+					}
+				},
+				"constructor": {
+					"details": "Constructor for the ONCHAINID Factory Gateway.",
+					"params": {
+						"idFactoryAddress": "the address of the factory to operate (the Gateway must be owner of the Factory)."
+					}
+				},
+				"deployIdentityForWallet(address)": {
+					"details": "Deploy an ONCHAINID using a factory using the identityOwner address as salt.",
+					"params": {
+						"identityOwner": "the address to set as a management key."
+					}
+				},
+				"deployIdentityWithSalt(address,string,uint256,bytes)": {
+					"details": "Deploy an ONCHAINID using a factory. The operation must be signed by  an approved public key. This method allow to deploy an ONCHAINID using a custom salt.",
+					"params": {
+						"identityOwner": "the address to set as a management key.",
+						"salt": "to use for the deployment.",
+						"signature": "the approval containing the salt and the identityOwner address.",
+						"signatureExpiry": "the block timestamp where the signature will expire."
+					}
+				},
+				"deployIdentityWithSaltAndManagementKeys(address,string,bytes32[],uint256,bytes)": {
+					"details": "Deploy an ONCHAINID using a factory. The operation must be signed by  an approved public key. This method allow to deploy an ONCHAINID using a custom salt and a custom list of  management keys. Note that the identity Owner address won't be added as a management keys, if this is desired,  the key hash must be listed in the managementKeys array.",
+					"params": {
+						"identityOwner": "the address to set as a management key.",
+						"managementKeys": "the list of management keys to add to the ONCHAINID.",
+						"salt": "to use for the deployment.",
+						"signature": "the approval containing the salt and the identityOwner address.",
+						"signatureExpiry": "the block timestamp where the signature will expire."
+					}
+				},
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+				},
+				"revokeSignature(bytes)": {
+					"details": "Revoke a signature, if the signature is used to deploy an ONCHAINID, the deployment would be rejected.",
+					"params": {
+						"signature": "the signature to revoke."
+					}
+				},
+				"revokeSigner(address)": {
+					"details": "Revoke a signer to sign ONCHAINID deployments.",
+					"params": {
+						"signer": "the signer address to revoke."
+					}
+				},
+				"transferFactoryOwnership(address)": {
+					"details": "Transfer the ownership of the factory to a new owner.",
+					"params": {
+						"newOwner": "the new owner of the factory."
+					}
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"errors": {
+				"ExpiredSignature(bytes)": [
+					{
+						"notice": "A requested ONCHAINID deployment was requested with a signature that expired."
+					}
+				],
+				"RevokedSignature(bytes)": [
+					{
+						"notice": "A requested ONCHAINID deployment was requested with a signature revoked."
+					}
+				],
+				"SignatureAlreadyRevoked(bytes)": [
+					{
+						"notice": "Attempted to revoke a signature that was already revoked."
+					}
+				],
+				"SignatureNotRevoked(bytes)": [
+					{
+						"notice": "Attempted to approve a signature that was not revoked."
+					}
+				],
+				"SignerAlreadyApproved(address)": [
+					{
+						"notice": "The signed attempted to add was already approved."
+					}
+				],
+				"SignerAlreadyNotApproved(address)": [
+					{
+						"notice": "The signed attempted to remove was not approved."
+					}
+				],
+				"TooManySigners()": [
+					{
+						"notice": "The maximum number of signers was reached at deployment."
+					}
+				],
+				"UnapprovedSigner(address)": [
+					{
+						"notice": "A requested ONCHAINID deployment was requested and signer by a non approved signer."
+					}
+				],
+				"ZeroAddress()": [
+					{
+						"notice": "A required parameter was set to the Zero address."
+					}
+				]
+			},
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/onChainID/contracts/gateway/Gateway.sol": "Gateway"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/access/Ownable.sol": {
+			"keccak256": "0xe6dd1bb1b56d51404c2664bf6a0fce775e228e0b21af652072be31534e72728e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c60f1471735a5f3bde3c627f9da51ddf7cc28b4d536cc99ff744c8d38e4ab895",
+				"dweb:/ipfs/Qmap8wDcLTZaPjzv6g8mrrFX6h7qmzWaM2cABndwvSAzA8"
+			]
+		},
+		"@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12",
+				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
+			]
+		},
+		"@openzeppelin/contracts/utils/Strings.sol": {
+			"keccak256": "0x55f102ea785d8399c0e58d1108e2d289506dde18abc6db1b7f68c1f9f9bc5792",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6e52e0a7765c943ef14e5bcf11e46e6139fa044be564881378349236bf2e3453",
+				"dweb:/ipfs/QmZEeeXoFPW47amyP35gfzomF9DixqqTEPwzBakv6cZw6i"
+			]
+		},
+		"@openzeppelin/contracts/utils/cryptography/ECDSA.sol": {
+			"keccak256": "0xeed0a08b0b091f528356cbc7245891a4c748682d4f6a18055e8e6ca77d12a6cf",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ba80ba06c8e6be852847e4c5f4492cef801feb6558ae09ed705ff2e04ea8b13c",
+				"dweb:/ipfs/QmXRJDv3xHLVQCVXg1ZvR35QS9sij5y9NDWYzMfUfAdTHF"
+			]
+		},
+		"@openzeppelin/contracts/utils/math/Math.sol": {
+			"keccak256": "0x005ec64c6313f0555d59e278f9a7a5ab2db5bdc72a027f255a37c327af1ec02d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4ece9f0b9c8daca08c76b6b5405a6446b6f73b3a15fab7ff56e296cbd4a2c875",
+				"dweb:/ipfs/QmQyRpyPRL5SQuAgj6SHmbir3foX65FJjbVTTQrA2EFg6L"
+			]
+		},
+		"@openzeppelin/contracts/utils/math/SignedMath.sol": {
+			"keccak256": "0x5f7e4076e175393767754387c962926577f1660dd9b810187b9002407656be72",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7d533a1c97cd43a57cd9c465f7ee8dd0e39ae93a8fb8ff8e5303a356b081cdcc",
+				"dweb:/ipfs/QmVBEei6aTnvYNZp2CHYVNKyZS4q1KkjANfY39WVXZXVoT"
+			]
+		},
+		"contracts/onChainID/contracts/factory/IIdFactory.sol": {
+			"keccak256": "0x055b4adc02f9c3a1e66b242f10062037b67fe354cacefb0ba1973fc41556ef63",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://e049a4b9a9e01608b8156565cab3774d015f8be2b800739cd341ba5def1a2e8f",
+				"dweb:/ipfs/Qmey42HhkGiFEuFRMXkYeUhQdhDAaMEaagD8xTusovqb6k"
+			]
+		},
+		"contracts/onChainID/contracts/factory/IdFactory.sol": {
+			"keccak256": "0xfbf4b2ec8af4351828e8b48fe6d5946ead3f55370f0d8990a4d4efd50f7a5ead",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://868895f61d130d73b2ebc07de389d8b27c4e82604a441798b9c98e94b906b649",
+				"dweb:/ipfs/QmewkfYRWaZhdA33fYfeiHsrfWZXrQ6Wm9FNjrL2a53QmK"
+			]
+		},
+		"contracts/onChainID/contracts/gateway/Gateway.sol": {
+			"keccak256": "0xcf5b28c3e70b9251aa5ea40545be36cfabd0c73712ba3674ba854419bb7fa375",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://b3b5f53514a55209012e633e61ac3ca6e552781ac7c932930a5efce5180f8e5c",
+				"dweb:/ipfs/QmQtw9M2jAETB7v4Lku5CPyzFGtffF2CRUFfr3s1A2mvSP"
+			]
+		},
+		"contracts/onChainID/contracts/interface/IERC734.sol": {
+			"keccak256": "0x7ca841caeee4116062dba880a955796c773d1b0b35a7d69b67104d9e6bd2705a",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://bc05e6f2872be12d06cfe630c13d1d6d74b5b9b587f0797615e5dac88e84f4c8",
+				"dweb:/ipfs/Qme2h6ah6uYShmK5x3fgfsH7rCqYtSUns9tyRyKFJYef6c"
+			]
+		},
+		"contracts/onChainID/contracts/interface/IImplementationAuthority.sol": {
+			"keccak256": "0xa889d5603ce6e8c223f24960ff2e75f50cf29df86b34b8d9c1e2a8e540604885",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://b192c28d8353b76a387ef422d1b07c02bafde90da7c9ff7fd39a45ef886f785b",
+				"dweb:/ipfs/QmTrAtJ8ckHfPpJ4ytKpSDUi61zgyGL4LH59dJE151hwCY"
+			]
+		},
+		"contracts/onChainID/contracts/proxy/IdentityProxy.sol": {
+			"keccak256": "0x70c513f93cda3f6ce07fa7d8a92a004209723d2552ca796ba16fdde9ade41e8f",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://41eecaa290b4d08556e48b6ea5e0ab5e4a25b07ee34a34177f3b75ae61e827ab",
+				"dweb:/ipfs/QmVsbe3xLoTCzXX4zUoe33oFeuM2Cfm4umXd5WHJf4RE6L"
+			]
+		}
+	},
+	"version": 1
+}

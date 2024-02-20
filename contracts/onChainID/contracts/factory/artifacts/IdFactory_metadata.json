@@ -1,0 +1,583 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "ImplementationAuthority",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "OwnableInvalidOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "OwnableUnauthorizedAccount",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_addr",
+						"type": "address"
+					}
+				],
+				"name": "Deployed",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "factory",
+						"type": "address"
+					}
+				],
+				"name": "TokenFactoryAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "factory",
+						"type": "address"
+					}
+				],
+				"name": "TokenFactoryRemoved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "identity",
+						"type": "address"
+					}
+				],
+				"name": "TokenLinked",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "wallet",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "identity",
+						"type": "address"
+					}
+				],
+				"name": "WalletLinked",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "wallet",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "identity",
+						"type": "address"
+					}
+				],
+				"name": "WalletUnlinked",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_factory",
+						"type": "address"
+					}
+				],
+				"name": "addTokenFactory",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_wallet",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "_salt",
+						"type": "string"
+					}
+				],
+				"name": "createIdentity",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_wallet",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "_salt",
+						"type": "string"
+					},
+					{
+						"internalType": "bytes32[]",
+						"name": "_managementKeys",
+						"type": "bytes32[]"
+					}
+				],
+				"name": "createIdentityWithManagementKeys",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_token",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_tokenOwner",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "_salt",
+						"type": "string"
+					}
+				],
+				"name": "createTokenIdentity",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_wallet",
+						"type": "address"
+					}
+				],
+				"name": "getIdentity",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_identity",
+						"type": "address"
+					}
+				],
+				"name": "getToken",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_identity",
+						"type": "address"
+					}
+				],
+				"name": "getWallets",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "implementationAuthority",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_salt",
+						"type": "string"
+					}
+				],
+				"name": "isSaltTaken",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_factory",
+						"type": "address"
+					}
+				],
+				"name": "isTokenFactory",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_newWallet",
+						"type": "address"
+					}
+				],
+				"name": "linkWallet",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_factory",
+						"type": "address"
+					}
+				],
+				"name": "removeTokenFactory",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_oldWallet",
+						"type": "address"
+					}
+				],
+				"name": "unlinkWallet",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"errors": {
+				"OwnableInvalidOwner(address)": [
+					{
+						"details": "The owner is not a valid owner account. (eg. `address(0)`)"
+					}
+				],
+				"OwnableUnauthorizedAccount(address)": [
+					{
+						"details": "The caller account is not authorized to perform an operation."
+					}
+				]
+			},
+			"kind": "dev",
+			"methods": {
+				"addTokenFactory(address)": {
+					"details": "See {IdFactory-addTokenFactory}."
+				},
+				"createIdentity(address,string)": {
+					"details": "See {IdFactory-createIdentity}."
+				},
+				"createIdentityWithManagementKeys(address,string,bytes32[])": {
+					"details": "See {IdFactory-createIdentityWithManagementKeys}."
+				},
+				"createTokenIdentity(address,address,string)": {
+					"details": "See {IdFactory-createTokenIdentity}."
+				},
+				"getIdentity(address)": {
+					"details": "See {IdFactory-getIdentity}."
+				},
+				"getToken(address)": {
+					"details": "See {IdFactory-getToken}."
+				},
+				"getWallets(address)": {
+					"details": "See {IdFactory-getWallets}."
+				},
+				"implementationAuthority()": {
+					"details": "See {IdFactory-implementationAuthority}."
+				},
+				"isSaltTaken(string)": {
+					"details": "See {IdFactory-isSaltTaken}."
+				},
+				"isTokenFactory(address)": {
+					"details": "See {IdFactory-isTokenFactory}."
+				},
+				"linkWallet(address)": {
+					"details": "See {IdFactory-linkWallet}."
+				},
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"removeTokenFactory(address)": {
+					"details": "See {IdFactory-removeTokenFactory}."
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				},
+				"unlinkWallet(address)": {
+					"details": "See {IdFactory-unlinkWallet}."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"events": {
+				"Deployed(address)": {
+					"notice": "events"
+				}
+			},
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/onChainID/contracts/factory/IdFactory.sol": "IdFactory"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/access/Ownable.sol": {
+			"keccak256": "0xe6dd1bb1b56d51404c2664bf6a0fce775e228e0b21af652072be31534e72728e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c60f1471735a5f3bde3c627f9da51ddf7cc28b4d536cc99ff744c8d38e4ab895",
+				"dweb:/ipfs/Qmap8wDcLTZaPjzv6g8mrrFX6h7qmzWaM2cABndwvSAzA8"
+			]
+		},
+		"@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12",
+				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
+			]
+		},
+		"contracts/onChainID/contracts/factory/IIdFactory.sol": {
+			"keccak256": "0x055b4adc02f9c3a1e66b242f10062037b67fe354cacefb0ba1973fc41556ef63",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://e049a4b9a9e01608b8156565cab3774d015f8be2b800739cd341ba5def1a2e8f",
+				"dweb:/ipfs/Qmey42HhkGiFEuFRMXkYeUhQdhDAaMEaagD8xTusovqb6k"
+			]
+		},
+		"contracts/onChainID/contracts/factory/IdFactory.sol": {
+			"keccak256": "0xfbf4b2ec8af4351828e8b48fe6d5946ead3f55370f0d8990a4d4efd50f7a5ead",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://868895f61d130d73b2ebc07de389d8b27c4e82604a441798b9c98e94b906b649",
+				"dweb:/ipfs/QmewkfYRWaZhdA33fYfeiHsrfWZXrQ6Wm9FNjrL2a53QmK"
+			]
+		},
+		"contracts/onChainID/contracts/interface/IERC734.sol": {
+			"keccak256": "0x7ca841caeee4116062dba880a955796c773d1b0b35a7d69b67104d9e6bd2705a",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://bc05e6f2872be12d06cfe630c13d1d6d74b5b9b587f0797615e5dac88e84f4c8",
+				"dweb:/ipfs/Qme2h6ah6uYShmK5x3fgfsH7rCqYtSUns9tyRyKFJYef6c"
+			]
+		},
+		"contracts/onChainID/contracts/interface/IImplementationAuthority.sol": {
+			"keccak256": "0xa889d5603ce6e8c223f24960ff2e75f50cf29df86b34b8d9c1e2a8e540604885",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://b192c28d8353b76a387ef422d1b07c02bafde90da7c9ff7fd39a45ef886f785b",
+				"dweb:/ipfs/QmTrAtJ8ckHfPpJ4ytKpSDUi61zgyGL4LH59dJE151hwCY"
+			]
+		},
+		"contracts/onChainID/contracts/proxy/IdentityProxy.sol": {
+			"keccak256": "0x70c513f93cda3f6ce07fa7d8a92a004209723d2552ca796ba16fdde9ade41e8f",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://41eecaa290b4d08556e48b6ea5e0ab5e4a25b07ee34a34177f3b75ae61e827ab",
+				"dweb:/ipfs/QmVsbe3xLoTCzXX4zUoe33oFeuM2Cfm4umXd5WHJf4RE6L"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,0 +1,497 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "OwnableInvalidOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "OwnableUnauthorizedAccount",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "contract IClaimIssuer",
+						"name": "claimIssuer",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256[]",
+						"name": "claimTopics",
+						"type": "uint256[]"
+					}
+				],
+				"name": "ClaimIssuerAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "contract IClaimIssuer",
+						"name": "claimIssuer",
+						"type": "address"
+					}
+				],
+				"name": "ClaimIssuerRemoved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "contract IClaimIssuer",
+						"name": "claimIssuer",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256[]",
+						"name": "claimTopics",
+						"type": "uint256[]"
+					}
+				],
+				"name": "ClaimTopicsUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IClaimIssuer",
+						"name": "_claimIssuer",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "_claimTopics",
+						"type": "uint256[]"
+					}
+				],
+				"name": "addClaimIssuer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IClaimIssuer",
+						"name": "_claimIssuer",
+						"type": "address"
+					}
+				],
+				"name": "getClaimIssuerClaimTopics",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getClaimIssuers",
+				"outputs": [
+					{
+						"internalType": "contract IClaimIssuer[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "claimTopic",
+						"type": "uint256"
+					}
+				],
+				"name": "getClaimIssuersForClaimTopic",
+				"outputs": [
+					{
+						"internalType": "contract IClaimIssuer[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IClaimIssuer",
+						"name": "_issuer",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_claimTopic",
+						"type": "uint256"
+					}
+				],
+				"name": "hasClaimTopic",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IClaimIssuer",
+						"name": "_issuer",
+						"type": "address"
+					}
+				],
+				"name": "isClaimIssuer",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IClaimIssuer",
+						"name": "_claimIssuer",
+						"type": "address"
+					}
+				],
+				"name": "removeClaimIssuer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IClaimIssuer",
+						"name": "_claimIssuer",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "_claimTopics",
+						"type": "uint256[]"
+					}
+				],
+				"name": "updateIssuerClaimTopics",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "This contract maintains a registry of claim issuers and their associated claim topics for the ERC-3643 standard.",
+			"errors": {
+				"OwnableInvalidOwner(address)": [
+					{
+						"details": "The owner is not a valid owner account. (eg. `address(0)`)"
+					}
+				],
+				"OwnableUnauthorizedAccount(address)": [
+					{
+						"details": "The caller account is not authorized to perform an operation."
+					}
+				]
+			},
+			"kind": "dev",
+			"methods": {
+				"addClaimIssuer(address,uint256[])": {
+					"params": {
+						"_claimIssuer": "The address of the claim issuer.",
+						"_claimTopics": "An array of claim topics associated with the claim issuer. Requirements: - The caller must be the owner of the contract. - The claim issuer address must not be zero. - The claim issuer must not already exist in the registry. - The claim topics array must not be empty. - It is recommended to add a reasonable number of claim issuers at once. Emits a ClaimIssuerAdded event."
+					}
+				},
+				"getClaimIssuerClaimTopics(address)": {
+					"params": {
+						"_claimIssuer": "The claim issuer to find associated claim topics for."
+					},
+					"returns": {
+						"_0": "A memory array of claim topics."
+					}
+				},
+				"getClaimIssuers()": {
+					"returns": {
+						"_0": "A memory array of claim issuers."
+					}
+				},
+				"getClaimIssuersForClaimTopic(uint256)": {
+					"params": {
+						"claimTopic": "The claim topic to find associated claim issuers for."
+					},
+					"returns": {
+						"_0": "A memory array of claim issuers."
+					}
+				},
+				"hasClaimTopic(address,uint256)": {
+					"details": "This function checks if a specific claim topic is associated with a claim issuer.",
+					"params": {
+						"_claimTopic": "The claim topic to check.",
+						"_issuer": "The claim issuer to check."
+					},
+					"returns": {
+						"_0": "bool True if the claim issuer has the claim topic, otherwise false."
+					}
+				},
+				"isClaimIssuer(address)": {
+					"params": {
+						"_issuer": "The address to check."
+					},
+					"returns": {
+						"_0": "True if the address is a claim issuer, false otherwise."
+					}
+				},
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"removeClaimIssuer(address)": {
+					"params": {
+						"_claimIssuer": "The address of the claim issuer to be removed. Requirements: - The caller must be the owner of the contract. - The claim issuer must exist in the registry. Emits a ClaimIssuerRemoved event."
+					}
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				},
+				"updateIssuerClaimTopics(address,uint256[])": {
+					"params": {
+						"_claimIssuer": "The address of the claim issuer.",
+						"_claimTopics": "An array of claim topics to be associated with the claim issuer. Requirements: - The caller must be the owner of the contract. - The claim issuer must exist in the registry. - The claim topics array must not be empty. Emits a ClaimTopicsUpdated event."
+					}
+				}
+			},
+			"stateVariables": {
+				"_claimIssuerClaimTopics": {
+					"details": "Mapping between a claim issuer address and its corresponding claimTopics."
+				},
+				"_claimIssuers": {
+					"details": "Array containing all ClaimIssuers identity contract address."
+				},
+				"_claimTopicToClaimIssuers": {
+					"details": "Mapping between a claim topic and the allowed claim issuers for it."
+				}
+			},
+			"title": "ERC-3643 - ClaimIssuersRegistry",
+			"version": 1
+		},
+		"userdoc": {
+			"events": {
+				"ClaimIssuerAdded(address,uint256[])": {
+					"notice": "this event is emitted when a claim issuer is added in the registry.  the event is emitted by the addClaimIssuer function  `claimIssuer` is the address of the claim issuer's ClaimIssuer contract  `claimTopics` is the set of claims that the claim issuer is allowed to emit"
+				},
+				"ClaimIssuerRemoved(address)": {
+					"notice": "this event is emitted when a claim issuer is removed from the registry.  the event is emitted by the removeClaimIssuer function  `claimIssuer` is the address of the claim issuer's ClaimIssuer contract"
+				},
+				"ClaimTopicsUpdated(address,uint256[])": {
+					"notice": "this event is emitted when the set of claim topics is changed for a given claim issuer.  the event is emitted by the updateIssuerClaimTopics function  `claimIssuer` is the address of the claim issuer's ClaimIssuer contract  `claimTopics` is the set of claims that the claim issuer is allowed to emit"
+				}
+			},
+			"kind": "user",
+			"methods": {
+				"addClaimIssuer(address,uint256[])": {
+					"notice": "Adds a claim issuer to the Claim Issuers Registry."
+				},
+				"getClaimIssuerClaimTopics(address)": {
+					"notice": "Returns an array of claim topics associated with a specific claim issuer."
+				},
+				"getClaimIssuers()": {
+					"notice": "Returns an array of all claim issuers in the registry."
+				},
+				"getClaimIssuersForClaimTopic(uint256)": {
+					"notice": "Returns an array of all claim issuers associated with a specific claim topic."
+				},
+				"hasClaimTopic(address,uint256)": {
+					"notice": "Checks if a claim issuer has a specific claim topic."
+				},
+				"isClaimIssuer(address)": {
+					"notice": "Checks if an address is a claim issuer in the registry."
+				},
+				"removeClaimIssuer(address)": {
+					"notice": "Removes a claim issuer from the Claim Issuers Registry."
+				},
+				"updateIssuerClaimTopics(address,uint256[])": {
+					"notice": "Updates the claim topics associated with a claim issuer."
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/registry/ClaimIssuersRegistry.sol": "ClaimIssuersRegistry"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@onchain-id/solidity/contracts/interface/IClaimIssuer.sol": {
+			"keccak256": "0xbb0ece96ebc110624705b3b6859367974ba6b17cff353df43a83b108680f0d26",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://55a65e7c5daab4b177604b00c68835377386390c05cee4dc26c91aef86af7237",
+				"dweb:/ipfs/QmdYNJMYJxFnpaSQZafLpFPER9wyMkUZmGkQko1XrUMHP7"
+			]
+		},
+		"@onchain-id/solidity/contracts/interface/IERC734.sol": {
+			"keccak256": "0x7ca841caeee4116062dba880a955796c773d1b0b35a7d69b67104d9e6bd2705a",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://bc05e6f2872be12d06cfe630c13d1d6d74b5b9b587f0797615e5dac88e84f4c8",
+				"dweb:/ipfs/Qme2h6ah6uYShmK5x3fgfsH7rCqYtSUns9tyRyKFJYef6c"
+			]
+		},
+		"@onchain-id/solidity/contracts/interface/IERC735.sol": {
+			"keccak256": "0x60ac71cd3e106d656dcc26e6f58df6e8c487ce5d0cdeed6f5449cf974a24e587",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://26716e36966cb392d6fa8f9a470b69ded94fedf7f9cdd5095af0028d194baa6d",
+				"dweb:/ipfs/QmYJ7Lc4vk1LNHtqZPWtZSpStCepQRgzUWvVaGAb5yLFV8"
+			]
+		},
+		"@onchain-id/solidity/contracts/interface/IIdentity.sol": {
+			"keccak256": "0xa3166f33baa94c9f2a010c8618fdd6038b4a64636eab809c50442c835f08f8dc",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://b84d33d807a86846807678787e89f01ee81903968506caf5bc55c36622670c80",
+				"dweb:/ipfs/QmQxG5fp38FTzK22rArNMpknA276Ji5mrrEuaoCR7pwzsH"
+			]
+		},
+		"@openzeppelin/contracts/access/Ownable.sol": {
+			"keccak256": "0xe6dd1bb1b56d51404c2664bf6a0fce775e228e0b21af652072be31534e72728e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c60f1471735a5f3bde3c627f9da51ddf7cc28b4d536cc99ff744c8d38e4ab895",
+				"dweb:/ipfs/Qmap8wDcLTZaPjzv6g8mrrFX6h7qmzWaM2cABndwvSAzA8"
+			]
+		},
+		"@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12",
+				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
+			]
+		},
+		"contracts/registry/ClaimIssuersRegistry.sol": {
+			"keccak256": "0xfc52020b79f4facf4be4129f719669c0f5de40a03e506b433b196588c9bb3f18",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://f17a1da8b616972f3574a46d8d1732863cf9d2d34cecce5f315ad1dfa34bb590",
+				"dweb:/ipfs/QmZuXVxaC3TYPiS6pp2vKjDrLgCtMG42WgeFikCuVdQQc5"
+			]
+		},
+		"contracts/registry/interface/IClaimIssuersRegistry.sol": {
+			"keccak256": "0xa39c1be91cea916b2510a7d741b9a1e78fa03ed8ffee0be6aee95d26e675d874",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://157624f0af04aee04c381389d8fd62a3cfddbd3ab935a89b34f6b931fddce99f",
+				"dweb:/ipfs/QmQ9zQ4ueNM75VjDWbVRiDyjW3cdS7k3LWQiZqHeUnfRaJ"
+			]
+		}
+	},
+	"version": 1
+}

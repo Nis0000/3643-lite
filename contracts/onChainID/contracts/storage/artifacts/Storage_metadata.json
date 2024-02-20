@@ -1,0 +1,58 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"stateVariables": {
+				"__gap": {
+					"details": "This empty reserved space is put in place to allow future versions to add new variables without shifting down storage in the inheritance chain."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/onChainID/contracts/storage/Storage.sol": "Storage"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/onChainID/contracts/storage/Storage.sol": {
+			"keccak256": "0xe793101d554d37fab96da523a59489f5874d6b460e5bb34b3e7561f0a92cbd70",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://121d46d35633a0bdd37b7d674a744323600fd64899568f86f5869f89f5aa3020",
+				"dweb:/ipfs/QmZPBS4b6qB9urv4sdq2UZRrNfKw6fqGVsZN3VPiw5Nw1e"
+			]
+		},
+		"contracts/onChainID/contracts/storage/Structs.sol": {
+			"keccak256": "0x49e2af7bf192ca52a2f62b86b58664bf8769df38ef44fb62bde43cd04d64dc03",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://6b9e5c38fabefc0bf21df8f65bebc64336a00ff54399a9aad0a626523fe4ff1a",
+				"dweb:/ipfs/QmUo3W97K1XcU7RsPenJ9cMttd9sHbGvfTxyyDyXBTERML"
+			]
+		}
+	},
+	"version": 1
+}

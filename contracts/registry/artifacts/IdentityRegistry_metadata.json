@@ -1,0 +1,1011 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "contract IClaimIssuersRegistry",
+						"name": "_claimIssuersRegistry",
+						"type": "address"
+					},
+					{
+						"internalType": "contract IClaimTopicsRegistry",
+						"name": "_claimTopicsRegistry",
+						"type": "address"
+					},
+					{
+						"internalType": "contract IIdentityRegistryStorage",
+						"name": "_identityStorage",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "AccessControlBadConfirmation",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "neededRole",
+						"type": "bytes32"
+					}
+				],
+				"name": "AccessControlUnauthorizedAccount",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "contract IClaimIssuersRegistry",
+						"name": "claimIssuersRegistry",
+						"type": "address"
+					}
+				],
+				"name": "ClaimIssuersRegistrySet",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "contract IClaimTopicsRegistry",
+						"name": "claimTopicsRegistry",
+						"type": "address"
+					}
+				],
+				"name": "ClaimTopicsRegistrySet",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "investorAddress",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint16",
+						"name": "country",
+						"type": "uint16"
+					}
+				],
+				"name": "CountryUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "investorAddress",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "contract IIdentity",
+						"name": "identity",
+						"type": "address"
+					}
+				],
+				"name": "IdentityRegistered",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "investorAddress",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "contract IIdentity",
+						"name": "identity",
+						"type": "address"
+					}
+				],
+				"name": "IdentityRemoved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "contract IIdentityRegistryStorage",
+						"name": "identityStorage",
+						"type": "address"
+					}
+				],
+				"name": "IdentityStorageSet",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "contract IIdentity",
+						"name": "oldIdentity",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "contract IIdentity",
+						"name": "newIdentity",
+						"type": "address"
+					}
+				],
+				"name": "IdentityUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "previousAdminRole",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "newAdminRole",
+						"type": "bytes32"
+					}
+				],
+				"name": "RoleAdminChanged",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "RoleGranted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "RoleRevoked",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "AGENT_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "DEFAULT_ADMIN_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "OWNER_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "_userAddresses",
+						"type": "address[]"
+					},
+					{
+						"internalType": "contract IIdentity[]",
+						"name": "_identities",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint16[]",
+						"name": "_countries",
+						"type": "uint16[]"
+					}
+				],
+				"name": "batchRegisterIdentity",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_userAddress",
+						"type": "address"
+					}
+				],
+				"name": "contains",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_userAddress",
+						"type": "address"
+					}
+				],
+				"name": "deleteIdentity",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					}
+				],
+				"name": "getRoleAdmin",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "grantRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "hasRole",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_userAddress",
+						"type": "address"
+					}
+				],
+				"name": "identity",
+				"outputs": [
+					{
+						"internalType": "contract IIdentity",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "identityStorage",
+				"outputs": [
+					{
+						"internalType": "contract IIdentityRegistryStorage",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_userAddress",
+						"type": "address"
+					}
+				],
+				"name": "investorCountry",
+				"outputs": [
+					{
+						"internalType": "uint16",
+						"name": "",
+						"type": "uint16"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_userAddress",
+						"type": "address"
+					}
+				],
+				"name": "isVerified",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "issuersRegistry",
+				"outputs": [
+					{
+						"internalType": "contract IClaimIssuersRegistry",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_userAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "contract IIdentity",
+						"name": "_identity",
+						"type": "address"
+					},
+					{
+						"internalType": "uint16",
+						"name": "_country",
+						"type": "uint16"
+					}
+				],
+				"name": "registerIdentity",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "callerConfirmation",
+						"type": "address"
+					}
+				],
+				"name": "renounceRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "revokeRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IClaimIssuersRegistry",
+						"name": "_claimIssuersRegistry",
+						"type": "address"
+					}
+				],
+				"name": "setClaimIssuersRegistry",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IClaimTopicsRegistry",
+						"name": "_claimTopicsRegistry",
+						"type": "address"
+					}
+				],
+				"name": "setClaimTopicsRegistry",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IIdentityRegistryStorage",
+						"name": "_identityRegistryStorage",
+						"type": "address"
+					}
+				],
+				"name": "setIdentityRegistryStorage",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes4",
+						"name": "interfaceId",
+						"type": "bytes4"
+					}
+				],
+				"name": "supportsInterface",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "topicsRegistry",
+				"outputs": [
+					{
+						"internalType": "contract IClaimTopicsRegistry",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_userAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint16",
+						"name": "_country",
+						"type": "uint16"
+					}
+				],
+				"name": "updateCountry",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_userAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "contract IIdentity",
+						"name": "_identity",
+						"type": "address"
+					}
+				],
+				"name": "updateIdentity",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "This contract is used to manage identities in the ERC-3643 standard. It allows for the registration, updating and deletion of identities associated with user addresses. It also supports the management of claim topics and claim issuers.",
+			"errors": {
+				"AccessControlBadConfirmation()": [
+					{
+						"details": "The caller of a function is not the expected one. NOTE: Don't confuse with {AccessControlUnauthorizedAccount}."
+					}
+				],
+				"AccessControlUnauthorizedAccount(address,bytes32)": [
+					{
+						"details": "The `account` is missing a role."
+					}
+				]
+			},
+			"events": {
+				"RoleAdminChanged(bytes32,bytes32,bytes32)": {
+					"details": "Emitted when `newAdminRole` is set as ``role``'s admin role, replacing `previousAdminRole` `DEFAULT_ADMIN_ROLE` is the starting admin for all roles, despite {RoleAdminChanged} not being emitted signaling this."
+				},
+				"RoleGranted(bytes32,address,address)": {
+					"details": "Emitted when `account` is granted `role`. `sender` is the account that originated the contract call, an admin role bearer except when using {AccessControl-_setupRole}."
+				},
+				"RoleRevoked(bytes32,address,address)": {
+					"details": "Emitted when `account` is revoked `role`. `sender` is the account that originated the contract call:   - if using `revokeRole`, it is the admin role bearer   - if using `renounceRole`, it is the role bearer (i.e. `account`)"
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"batchRegisterIdentity(address[],address[],uint16[])": {
+					"details": "Only an agent can register identities in batch.",
+					"params": {
+						"_countries": "The array of country codes.",
+						"_identities": "The array of identities.",
+						"_userAddresses": "The array of user addresses."
+					}
+				},
+				"constructor": {
+					"details": "Constructor of the IdentityRegistry contract.",
+					"params": {
+						"_claimIssuersRegistry": "The address of the claim issuers registry contract.",
+						"_claimTopicsRegistry": "The address of the claim topics registry contract.",
+						"_identityStorage": "The address of the identity registry storage contract."
+					}
+				},
+				"contains(address)": {
+					"params": {
+						"_userAddress": "The address to check."
+					},
+					"returns": {
+						"_0": "A boolean indicating if the address is in the registry."
+					}
+				},
+				"deleteIdentity(address)": {
+					"details": "Only an agent can delete an identity.",
+					"params": {
+						"_userAddress": "The address of the user."
+					}
+				},
+				"getRoleAdmin(bytes32)": {
+					"details": "Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}."
+				},
+				"grantRole(bytes32,address)": {
+					"details": "Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleGranted} event."
+				},
+				"hasRole(bytes32,address)": {
+					"details": "Returns `true` if `account` has been granted `role`."
+				},
+				"identity(address)": {
+					"params": {
+						"_userAddress": "The address of the user."
+					},
+					"returns": {
+						"_0": "The identity of the user."
+					}
+				},
+				"identityStorage()": {
+					"returns": {
+						"_0": "The current identity storage."
+					}
+				},
+				"investorCountry(address)": {
+					"params": {
+						"_userAddress": "The address of the investor."
+					},
+					"returns": {
+						"_0": "The country of the investor."
+					}
+				},
+				"isVerified(address)": {
+					"params": {
+						"_userAddress": "The address of the user to check."
+					},
+					"returns": {
+						"_0": "A boolean indicating if the user is verified."
+					}
+				},
+				"issuersRegistry()": {
+					"returns": {
+						"_0": "The current issuers registry."
+					}
+				},
+				"registerIdentity(address,address,uint16)": {
+					"details": "Only an agent can register an identity.",
+					"params": {
+						"_country": "The country code of the user.",
+						"_identity": "The identity of the user.",
+						"_userAddress": "The address of the user."
+					}
+				},
+				"renounceRole(bytes32,address)": {
+					"details": "Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been revoked `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `callerConfirmation`. May emit a {RoleRevoked} event."
+				},
+				"revokeRole(bytes32,address)": {
+					"details": "Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleRevoked} event."
+				},
+				"setClaimIssuersRegistry(address)": {
+					"details": "Only the owner can set the ClaimIssuersRegistry contract.",
+					"params": {
+						"_claimIssuersRegistry": "The address of the new ClaimIssuersRegistry contract."
+					}
+				},
+				"setClaimTopicsRegistry(address)": {
+					"details": "Only the owner can set the ClaimTopicsRegistry contract.",
+					"params": {
+						"_claimTopicsRegistry": "The address of the new ClaimTopicsRegistry contract."
+					}
+				},
+				"setIdentityRegistryStorage(address)": {
+					"details": "Only the owner can set the IdentityRegistryStorage contract.",
+					"params": {
+						"_identityRegistryStorage": "The address of the new IdentityRegistryStorage contract."
+					}
+				},
+				"supportsInterface(bytes4)": {
+					"details": "See {IERC165-supportsInterface}."
+				},
+				"topicsRegistry()": {
+					"returns": {
+						"_0": "The current topics registry."
+					}
+				},
+				"updateCountry(address,uint16)": {
+					"details": "Only an agent can update a country code.",
+					"params": {
+						"_country": "The new country code of the user.",
+						"_userAddress": "The address of the user."
+					}
+				},
+				"updateIdentity(address,address)": {
+					"details": "Only an agent can update an identity.",
+					"params": {
+						"_identity": "The new identity of the user.",
+						"_userAddress": "The address of the user."
+					}
+				}
+			},
+			"title": "ERC-3643 - IdentityRegistry",
+			"version": 1
+		},
+		"userdoc": {
+			"events": {
+				"ClaimIssuersRegistrySet(address)": {
+					"notice": "this event is emitted when the ClaimIssuersRegistry has been set for the IdentityRegistry  the event is emitted by the IdentityRegistry constructor  `claimIssuersRegistry` is the address of the Claim Issuers Registry contract"
+				},
+				"ClaimTopicsRegistrySet(address)": {
+					"notice": "this event is emitted when the ClaimTopicsRegistry has been set for the IdentityRegistry  the event is emitted by the IdentityRegistry constructor  `claimTopicsRegistry` is the address of the Claim Topics Registry contract"
+				},
+				"CountryUpdated(address,uint16)": {
+					"notice": "this event is emitted when an Identity's country has been updated  the event is emitted by the 'updateCountry' function  `investorAddress` is the address on which the country has been updated  `country` is the numeric code (ISO 3166-1) of the new country"
+				},
+				"IdentityRegistered(address,address)": {
+					"notice": "this event is emitted when an Identity is registered into the Identity Registry.  the event is emitted by the 'registerIdentity' function  `investorAddress` is the address of the investor's wallet  `identity` is the address of the Identity smart contract (onchainID)"
+				},
+				"IdentityRemoved(address,address)": {
+					"notice": "this event is emitted when an Identity is removed from the Identity Registry.  the event is emitted by the 'deleteIdentity' function  `investorAddress` is the address of the investor's wallet  `identity` is the address of the Identity smart contract (onchainID)"
+				},
+				"IdentityStorageSet(address)": {
+					"notice": "this event is emitted when the IdentityRegistryStorage has been set for the IdentityRegistry  the event is emitted by the IdentityRegistry constructor  `identityStorage` is the address of the Identity Registry Storage contract"
+				},
+				"IdentityUpdated(address,address)": {
+					"notice": "this event is emitted when an Identity has been updated  the event is emitted by the 'updateIdentity' function  `oldIdentity` is the old Identity contract's address to update  `newIdentity` is the new Identity contract's"
+				}
+			},
+			"kind": "user",
+			"methods": {
+				"batchRegisterIdentity(address[],address[],uint16[])": {
+					"notice": "Register multiple identities associated with multiple user addresses."
+				},
+				"constructor": {
+					"notice": "This constructor sets the initial state of the IdentityRegistry contract."
+				},
+				"contains(address)": {
+					"notice": "Check if an address is contained in the registry."
+				},
+				"deleteIdentity(address)": {
+					"notice": "Delete the identity associated with a user address."
+				},
+				"identity(address)": {
+					"notice": "Get the identity of a user."
+				},
+				"identityStorage()": {
+					"notice": "Get the identity storage."
+				},
+				"investorCountry(address)": {
+					"notice": "Get the country of an investor."
+				},
+				"isVerified(address)": {
+					"notice": "Checks if a user is verified based on their identity, claim topics, and claim issuers."
+				},
+				"issuersRegistry()": {
+					"notice": "Get the issuers registry."
+				},
+				"registerIdentity(address,address,uint16)": {
+					"notice": "Register an identity associated with a user address."
+				},
+				"setClaimIssuersRegistry(address)": {
+					"notice": "Set the ClaimIssuersRegistry contract."
+				},
+				"setClaimTopicsRegistry(address)": {
+					"notice": "Set the ClaimTopicsRegistry contract."
+				},
+				"setIdentityRegistryStorage(address)": {
+					"notice": "Set the IdentityRegistryStorage contract."
+				},
+				"topicsRegistry()": {
+					"notice": "Get the topics registry."
+				},
+				"updateCountry(address,uint16)": {
+					"notice": "Update the country code associated with a user address."
+				},
+				"updateIdentity(address,address)": {
+					"notice": "Update the identity associated with a user address."
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/registry/IdentityRegistry.sol": "IdentityRegistry"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@onchain-id/solidity/contracts/interface/IClaimIssuer.sol": {
+			"keccak256": "0xbb0ece96ebc110624705b3b6859367974ba6b17cff353df43a83b108680f0d26",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://55a65e7c5daab4b177604b00c68835377386390c05cee4dc26c91aef86af7237",
+				"dweb:/ipfs/QmdYNJMYJxFnpaSQZafLpFPER9wyMkUZmGkQko1XrUMHP7"
+			]
+		},
+		"@onchain-id/solidity/contracts/interface/IERC734.sol": {
+			"keccak256": "0x7ca841caeee4116062dba880a955796c773d1b0b35a7d69b67104d9e6bd2705a",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://bc05e6f2872be12d06cfe630c13d1d6d74b5b9b587f0797615e5dac88e84f4c8",
+				"dweb:/ipfs/Qme2h6ah6uYShmK5x3fgfsH7rCqYtSUns9tyRyKFJYef6c"
+			]
+		},
+		"@onchain-id/solidity/contracts/interface/IERC735.sol": {
+			"keccak256": "0x60ac71cd3e106d656dcc26e6f58df6e8c487ce5d0cdeed6f5449cf974a24e587",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://26716e36966cb392d6fa8f9a470b69ded94fedf7f9cdd5095af0028d194baa6d",
+				"dweb:/ipfs/QmYJ7Lc4vk1LNHtqZPWtZSpStCepQRgzUWvVaGAb5yLFV8"
+			]
+		},
+		"@onchain-id/solidity/contracts/interface/IIdentity.sol": {
+			"keccak256": "0xa3166f33baa94c9f2a010c8618fdd6038b4a64636eab809c50442c835f08f8dc",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://b84d33d807a86846807678787e89f01ee81903968506caf5bc55c36622670c80",
+				"dweb:/ipfs/QmQxG5fp38FTzK22rArNMpknA276Ji5mrrEuaoCR7pwzsH"
+			]
+		},
+		"@openzeppelin/contracts/access/AccessControl.sol": {
+			"keccak256": "0xa0e92d42942f4f57c5be50568dac11e9d00c93efcb458026e18d2d9b9b2e7308",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://46326c0bb1e296b67185e81c918e0b40501b8b6386165855df0a3f3c634b6a80",
+				"dweb:/ipfs/QmTwyrDYtsxsk6pymJTK94PnEpzsmkpUxFuzEiakDopy4Z"
+			]
+		},
+		"@openzeppelin/contracts/access/IAccessControl.sol": {
+			"keccak256": "0xb6b36edd6a2999fd243ff226d6cbf84bd71af2432bbd0dfe19392996a1d9cb41",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1fd2f35495652e57e3f99bc6c510bc5f7dd398a176ea2e72d8ed730aebc6ca26",
+				"dweb:/ipfs/QmTQV6X4gkikTib49cho5iDX3JvSQbdsoEChoDwrk3CbbH"
+			]
+		},
+		"@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12",
+				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
+			]
+		},
+		"@openzeppelin/contracts/utils/introspection/ERC165.sol": {
+			"keccak256": "0x9e8778b14317ba9e256c30a76fd6c32b960af621987f56069e1e819c77c6a133",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1777404f1dcd0fac188e55a288724ec3c67b45288e49cc64723e95e702b49ab8",
+				"dweb:/ipfs/QmZFdC626GButBApwDUvvTnUzdinevC3B24d7yyh57XkiA"
+			]
+		},
+		"@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+			"keccak256": "0x4296879f55019b23e135000eb36896057e7101fb7fb859c5ef690cf14643757b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://87b3541437c8c443ccd36795e56a338ed12855eec17f8da624511b8d1a7e14df",
+				"dweb:/ipfs/QmeJQCtZrQjtJLr6u7ZHWeH3pBnjtLWzvRrKViAi7UZqxL"
+			]
+		},
+		"contracts/registry/IdentityRegistry.sol": {
+			"keccak256": "0x91c2335614c01887ec8fde7452121796f4bd80d2533de39e729c495f5665c69c",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://a16de4a0a8f303291fd0630f16dc463a5df30cd58d77035223e815f384428dbe",
+				"dweb:/ipfs/QmPK4VpY3gu7cy81iSfw3MzEhJiKVPARGNogmcN2NVkKnT"
+			]
+		},
+		"contracts/registry/interface/IClaimIssuersRegistry.sol": {
+			"keccak256": "0xa39c1be91cea916b2510a7d741b9a1e78fa03ed8ffee0be6aee95d26e675d874",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://157624f0af04aee04c381389d8fd62a3cfddbd3ab935a89b34f6b931fddce99f",
+				"dweb:/ipfs/QmQ9zQ4ueNM75VjDWbVRiDyjW3cdS7k3LWQiZqHeUnfRaJ"
+			]
+		},
+		"contracts/registry/interface/IClaimTopicsRegistry.sol": {
+			"keccak256": "0x017f014ce235fc76eb10724fed3a682c47230ba5ff5f3085d437a30294c00fdb",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://9f3b2ee96ecf05e6bb469619f38e469887d1eca34a65b397648f01a033afe3c1",
+				"dweb:/ipfs/QmQb6p6HHMUWU5ezTFKpMgeDQcsKUDRMfuJt6uLQPUv6oK"
+			]
+		},
+		"contracts/registry/interface/IIdentityRegistry.sol": {
+			"keccak256": "0xbc47d0a331c5a816e8eee459239de4d312a578fbad75985af02ffb04e0389743",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://39a4cdc9fe0479f17ace597e185ee1f179f540af838a5a331244150163bb10f6",
+				"dweb:/ipfs/QmWQqSWAgndgbYT6pyHZ9SexrJHZy3XyQ3GMpLRwT743eL"
+			]
+		},
+		"contracts/registry/interface/IIdentityRegistryStorage.sol": {
+			"keccak256": "0xaca97bc7c58c5995e8811774365b4d7e9752e447bf6e137fb632740b2801fd5f",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://822e05a46c0e6042cd0d8421ae297b88cfecff55547e7cf2ffc3583759232675",
+				"dweb:/ipfs/QmezT6ghV6HppsstueLZpLszjCkEqjBKggAjFduVUtz8dL"
+			]
+		}
+	},
+	"version": 1
+}
